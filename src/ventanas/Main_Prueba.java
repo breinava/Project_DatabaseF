@@ -1,19 +1,39 @@
 package ventanas;
 
 import dao.DAOAlmacenImpl;
+import dao.DAOCategoria_ProductoImpl;
 import dao.DAOClienteImpl;
+import dao.DAOProductoImpl;
 import interfaces.DAOAlmacen;
+import interfaces.DAOCategoria_Producto;
 import interfaces.DAOCliente;
+import interfaces.DAOProducto;
 import modelo.Almacen;
+import modelo.Categoria_Producto;
 import modelo.Cliente;
+import modelo.Producto;
 
 
 public class Main_Prueba {
     
     public static void main(String... breiner){
         
+        Producto pd = new Producto();
         
+        pd.setNombre("Prueba");
+        pd.setPrecio1(22.823);
+        pd.setPrecio2(37.999);
+        pd.setName_categoria("Zapatos");
         
+        try{
+            DAOProducto dao = new DAOProductoImpl(); 
+            dao.RegistrarProducto(pd);
+            
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        
+        /*
         Almacen alm = new Almacen();
         //alm.setNit(876585776);
         //alm.setNombre("Bucaramanga");
@@ -28,7 +48,7 @@ public class Main_Prueba {
             System.err.println(e.getMessage());
         }
         
-        /*
+        
         Cliente cl = new Cliente();
         
         cl.setDni("8761948216394");
@@ -40,6 +60,19 @@ public class Main_Prueba {
         try{
             DAOCliente dao = new DAOClienteImpl();
             dao.RegistrarCliente(cl);
+            
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        
+        Categoria_Producto cp = new Categoria_Producto();
+        
+        cp.setNombre("Zapatos");
+        cp.setDescripcion("De marca y AAA");
+        
+        try{
+            DAOCategoria_Producto dao = new DAOCategoria_ProductoImpl();
+            dao.RegistrarCategoriaP(cp);
             
         }catch(Exception e){
             System.err.println(e.getMessage());
