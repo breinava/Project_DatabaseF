@@ -2,15 +2,11 @@ package modelo;
 
 public class Almacen {
     
-    private long nit;
+    private String nit;
     private String nombre;
 
-    public Almacen(long nit, String nombre) {
-        this.nit = nit;
-        this.nombre = nombre;
-    }
-
-    public long getNit() {
+    
+    public String getNit() {
         return nit;
     }
 
@@ -18,7 +14,7 @@ public class Almacen {
         return nombre;
     }
 
-    public void setNit(long nit) {
+    public void setNit(String nit) {
         this.nit = nit;
     }
 

@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class MySQL {
     
-    public static Connection Conexion;
+    public static Connection Conexion = null;
     
     
 //Conectar a DB    
