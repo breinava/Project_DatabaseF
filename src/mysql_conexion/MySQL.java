@@ -16,9 +16,9 @@ public class MySQL {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             
-            String servidor = "jdbc:mysql://localhost:3306/Project_Database";
+            String servidor = "jdbc:mysql://localhost:3306/Projecto";
             String user = "root";
-            String pass = "2142"; 
+            String pass = "root"; 
             
             Conexion = DriverManager.getConnection(servidor, user, pass);
             System.out.println("Conexion establecida...");

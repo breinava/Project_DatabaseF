@@ -3,6 +3,7 @@ package ventanas;
 import dao.DAOAlmacenImpl;
 import dao.DAOCategoria_ProductoImpl;
 import dao.DAOClienteImpl;
+import dao.DAOModoPagoImpl;
 import dao.DAOProductoImpl;
 import interfaces.DAOAlmacen;
 import interfaces.DAOCategoria_Producto;
@@ -11,6 +12,7 @@ import interfaces.DAOProducto;
 import modelo.Almacen;
 import modelo.Categoria_Producto;
 import modelo.Cliente;
+import modelo.ModoPago;
 import modelo.Producto;
 
 
@@ -25,9 +27,17 @@ public class Main_Prueba {
         pd.setPrecio2(37.999);
         pd.setName_categoria("Zapatos");
         
+        ModoPago pa = new ModoPago();
+        pa.setIdModoPago(12233);
+        pa.setNombre("Decontado");
         try{
-            DAOProducto dao = new DAOProductoImpl(); 
-            dao.RegistrarProducto(pd);
+            DAOProducto dao = new DAOProductoImpl();
+            DAOModoPagoImpl pag = new DAOModoPagoImpl();
+            //dao.RegistrarProducto(pd);
+            //pag.registarModoPago(pa);
+            pa.setNombre("Credito");
+      //      pag.modificarModoPago(pa);
+            
             
         }catch(Exception e){
             System.err.println(e.getMessage());
