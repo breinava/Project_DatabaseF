@@ -59,6 +59,7 @@ public class DAOModoPagoImpl extends MySQL implements DAOModoPago {
             PreparedStatement st = this.Conexion.prepareStatement("delete from MODO_PAGO WHERE idMODO_PAGO = ?;");
             //st.setInt(1, pago.getIdModoPago());
             st.setInt(1, pago.getIdModoPago());
+             st.executeLargeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOModoPagoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -81,6 +82,8 @@ public class DAOModoPagoImpl extends MySQL implements DAOModoPago {
                 pago.setNombre(rs.getString("NOMBRE"));
                 modosPagos.add(pago);                            
             }
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
             Logger.getLogger(DAOModoPagoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }finally{

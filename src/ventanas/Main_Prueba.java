@@ -3,15 +3,18 @@ package ventanas;
 import dao.DAOAlmacenImpl;
 import dao.DAOCategoria_ProductoImpl;
 import dao.DAOClienteImpl;
+import dao.DAOFacturaImpl;
 import dao.DAOModoPagoImpl;
 import dao.DAOProductoImpl;
 import interfaces.DAOAlmacen;
 import interfaces.DAOCategoria_Producto;
 import interfaces.DAOCliente;
 import interfaces.DAOProducto;
+import java.util.Date;
 import modelo.Almacen;
 import modelo.Categoria_Producto;
 import modelo.Cliente;
+import modelo.Factura;
 import modelo.ModoPago;
 import modelo.Producto;
 
@@ -30,12 +33,19 @@ public class Main_Prueba {
         ModoPago pa = new ModoPago();
         pa.setIdModoPago(12233);
         pa.setNombre("Decontado");
+        Factura f = new Factura(1, null, 01 , 12233, 1);
+                
         try{
             DAOProducto dao = new DAOProductoImpl();
             DAOModoPagoImpl pag = new DAOModoPagoImpl();
+            DAOFacturaImpl impl= new DAOFacturaImpl();
             //dao.RegistrarProducto(pd);
             //pag.registarModoPago(pa);
-            pa.setNombre("Credito");
+           // impl.crearFactura(f);
+           f.setIdEmpleado(2);
+           impl.modificarFactura(f);
+           
+           
       //      pag.modificarModoPago(pa);
             
             
