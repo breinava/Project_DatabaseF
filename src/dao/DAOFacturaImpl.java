@@ -3,9 +3,7 @@ package dao;
 
 import interfaces.DAOFactura;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +20,9 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
     public void crearFactura(Factura fac) {
         try {
             this.MySQLCnx();
-            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO FACTURAS VALUES(?,now(),?,?,?);");
+            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO FACTURAS VALUES(?,?,?,?,?)");
             st.setInt(1, fac.getNUM_FACTURA());
+            st.setTimestamp(2, null);
             st.setInt(3, fac.getClienteDni());
             st.setInt(4, fac.getIdModoPago());
             st.setInt(5, fac.getIdEmpleado());
@@ -40,7 +39,7 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
         try {
             this.MySQLCnx();
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE FACTURAS SET FECHA = NOW(), CLIENTES_DNI = ?, "
-                    + "idMODO_PAGO=?, ideMPLEADOS=? WHERE NUM_FACTURA = ?;");
+                    + "idMODO_PAGO=?, ideMPLEADOS=? WHERE NUM_FACTURA = ?");
             st.setInt(1, fac.getClienteDni());
             st.setInt(2, fac.getIdModoPago());
             st.setInt(3, fac.getIdEmpleado());
@@ -58,7 +57,7 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
     public void eliminarFactura(Factura fac) {
         try {
             this.MySQLCnx();
-            PreparedStatement st=this.Conexion.prepareStatement("DELETE FROM FACTURAS WHERE NUM_FACTURA = ?;");
+            PreparedStatement st=this.Conexion.prepareStatement("DELETE FROM FACTURAS WHERE NUM_FACTURA = ?");
             st.setInt(1, fac.getNUM_FACTURA());
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -70,25 +69,7 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
 
     @Override
     public List<Factura> getFacturas() {
-        List<Factura> facturas= new ArrayList<>();
-        try {
-            this.MySQLCnx();
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM FACTURAS;");
-            ResultSet rs= st.executeQuery();
-            while(rs.next()){
-                Factura fa = new Factura();
-                fa.setNUM_FACTURA(rs.getInt("NUM_FACTURA"));
-                fa.setClienteDni(rs.getInt("CLIENTES_DNI"));
-                fa.setIdEmpleado(rs.getInt("idEMPLEADOS"));
-                fa.setIdModoPago(rs.getInt("idMODO_PAGO"));
-                facturas.add(fa);
-            }
-            rs.close();
-            st.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOFacturaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return facturas;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
