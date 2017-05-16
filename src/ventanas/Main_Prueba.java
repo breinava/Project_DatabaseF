@@ -5,6 +5,7 @@ import dao.DAOCategoria_ProductoImpl;
 import dao.DAOClienteImpl;
 import dao.DAOFacturaImpl;
 import dao.DAOModoPagoImpl;
+import dao.DAOPedidoImpl;
 import dao.DAOProductoImpl;
 import interfaces.DAOAlmacen;
 import interfaces.DAOCategoria_Producto;
@@ -16,6 +17,7 @@ import modelo.Categoria_Producto;
 import modelo.Cliente;
 import modelo.Factura;
 import modelo.ModoPago;
+import modelo.Pedido;
 import modelo.Producto;
 
 
@@ -24,6 +26,7 @@ public class Main_Prueba {
     public static void main(String... breiner){
         
         Producto pd = new Producto();
+        Pedido pe= new Pedido(2, 1, 12233, 1);
         
         pd.setNombre("Prueba");
         pd.setPrecio1(22.823);
@@ -33,15 +36,17 @@ public class Main_Prueba {
         ModoPago pa = new ModoPago();
         pa.setIdModoPago(12233);
         pa.setNombre("Decontado");
-        Factura f = new Factura(1, null, 01 , 12233, 1);
+        Factura f = new Factura(1, 01 , 12233, 1);
                 
         try{
             DAOProducto dao = new DAOProductoImpl();
             DAOModoPagoImpl pag = new DAOModoPagoImpl();
             DAOFacturaImpl impl= new DAOFacturaImpl();
+            DAOPedidoImpl pep=new DAOPedidoImpl();
             //dao.RegistrarProducto(pd);
-            //pag.registarModoPago(pa);
+           // pag.registarModoPago(pa);
            // impl.crearFactura(f);
+           pep.registrarPedido(pe);
            f.setIdEmpleado(2);
            impl.modificarFactura(f);
            
