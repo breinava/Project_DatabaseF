@@ -33,7 +33,7 @@ public class Main_Prueba {
         ModoPago pa = new ModoPago();
         pa.setIdModoPago(12233);
         pa.setNombre("Decontado");
-        Factura f = new Factura(1, null, 01 , 12233, 1);
+        Factura f = new Factura(1, 01 , 12233, 1);
                 
         try{
             DAOProducto dao = new DAOProductoImpl();

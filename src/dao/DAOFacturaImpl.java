@@ -20,12 +20,11 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
     public void crearFactura(Factura fac) {
         try {
             this.MySQLCnx();
-            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO FACTURAS VALUES(?,?,?,?,?)");
+            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO FACTURAS VALUES(?,now(),?,?,?)");
             st.setInt(1, fac.getNUM_FACTURA());
-            st.setTimestamp(2, null);
-            st.setInt(3, fac.getClienteDni());
-            st.setInt(4, fac.getIdModoPago());
-            st.setInt(5, fac.getIdEmpleado());
+            st.setInt(2, fac.getClienteDni());
+            st.setInt(3, fac.getIdModoPago());
+            st.setInt(4, fac.getIdEmpleado());
             st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOFacturaImpl.class.getName()).log(Level.SEVERE, null, ex);
