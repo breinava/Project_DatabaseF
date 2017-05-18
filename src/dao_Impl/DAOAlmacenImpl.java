@@ -1,4 +1,4 @@
-package dao_Imp;
+package dao_Impl;
 
 import interfaces_dao.DAOAlmacen;
 import java.sql.PreparedStatement;

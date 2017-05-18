@@ -11,17 +11,17 @@ public class Usuario {
     private String usuario;
     private String email;
     private String pass;
-    private String tipo;
+    private boolean estado;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsu, String usuario, String email, String pass, String tipo) {
+    public Usuario(int idUsu, String usuario, String email, String pass, boolean estado) {
         this.idUsu = idUsu;
         this.usuario = usuario;
         this.email = email;
         this.pass = pass;
-        this.tipo = tipo;
+        this.estado = estado;
     }
 
     public int getIdUsu() {
@@ -56,12 +56,12 @@ public class Usuario {
         this.pass = pass;
     }
 
-    public String getTipo() {
-        return tipo;
+    public boolean getEstado() {
+        return estado;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
     
 }

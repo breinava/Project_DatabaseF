@@ -1,5 +1,5 @@
 
-package dao_Imp;
+package dao_Impl;
 
 import interfaces_dao.DAOCargo;
 import java.sql.PreparedStatement;

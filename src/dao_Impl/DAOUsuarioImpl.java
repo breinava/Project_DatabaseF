@@ -1,5 +1,5 @@
 
-package dao_Imp;
+package dao_Impl;
 
 import interfaces_dao.DAOUsuario;
 import java.sql.PreparedStatement;
@@ -22,12 +22,11 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     public void registrarUsuario(Usuario u) {
         try {
             this.MySQLCnx();
-            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO USUARIOS VALUES(?,?,?,?,?);");
-            st.setInt(1, u.getIdUsu());
-            st.setString(2,u.getUsuario() );
-            st.setString(3, u.getEmail());
-            st.setString(4, u.getPass());
-            st.setString(5, u.getTipo());
+            PreparedStatement st = this.Conexion.prepareStatement("CALL Registra_Usuarios(?,?,?,?);");
+            st.setString(1,u.getUsuario() );
+            st.setString(2, u.getEmail());
+            st.setString(3, u.getPass());
+            st.setBoolean(4, u.getEstado());
             st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,7 +43,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());
             st.setString(3, u.getPass());
-            st.setString(4, u.getTipo());
+            st.setBoolean(4, u.getEstado());
             st.setInt(1, u.getIdUsu());
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -81,7 +80,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
                 u.setUsuario(rs.getString(2));
                 u.setEmail(rs.getString(3));
                 u.setPass(rs.getString(4));
-                u.setTipo(rs.getString(5));
+                u.setEstado(rs.getBoolean(5));
                 usuarios.add(u);
             }
             rs.close();
@@ -92,6 +91,60 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
             this.CloseCnx();
         }
         return usuarios;
+    }
+
+    @Override
+    public String desencriptar(Usuario u) {
+        
+        String clave = "";
+        
+        try {
+            this.MySQLCnx();
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT Desencriptar_Clave(?) AS CLAVE;");
+            st.setString(1, u.getUsuario());
+            
+            ResultSet rs=st.executeQuery();
+            rs.next();
+            
+            clave = rs.getString("CLAVE");
+            
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            this.CloseCnx();
+        }        
+        return clave;
+    }
+
+    @Override
+    public Usuario buscarUsuario(String usr) {
+        Usuario u = new  Usuario();
+        
+        try {
+            this.MySQLCnx();
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS WHERE USUARIO = ?;");
+            st.setString(1, usr);
+            ResultSet rs=st.executeQuery();
+            rs.next();
+            
+            u.setIdUsu(rs.getInt(1));
+            u.setUsuario(rs.getString(2));
+            u.setEmail(rs.getString(3));
+            u.setPass(rs.getString(4));
+            u.setEstado(rs.getBoolean(5));
+            
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            this.CloseCnx();
+        }
+        
+        
+        return u;
     }
     
 }

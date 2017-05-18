@@ -1,15 +1,17 @@
 package ventanas;
 
-import dao_Imp.DAOAlmacenImpl;
-import dao_Imp.DAOCategoria_ProductoImpl;
-import dao_Imp.DAOClienteImpl;
-import dao_Imp.DAOFacturaImpl;
-import dao_Imp.DAOModoPagoImpl;
-import dao_Imp.DAOProductoImpl;
+import dao_Impl.DAOAlmacenImpl;
+import dao_Impl.DAOCategoria_ProductoImpl;
+import dao_Impl.DAOClienteImpl;
+import dao_Impl.DAOFacturaImpl;
+import dao_Impl.DAOModoPagoImpl;
+import dao_Impl.DAOProductoImpl;
+import dao_Impl.DAOUsuarioImpl;
 import interfaces_dao.DAOAlmacen;
 import interfaces_dao.DAOCategoria_Producto;
 import interfaces_dao.DAOCliente;
 import interfaces_dao.DAOProducto;
+import interfaces_dao.DAOUsuario;
 import java.util.Date;
 import modelo_dao.Almacen;
 import modelo_dao.Categoria_Producto;
@@ -17,12 +19,33 @@ import modelo_dao.Cliente;
 import modelo_dao.Factura;
 import modelo_dao.ModoPago;
 import modelo_dao.Producto;
+import modelo_dao.Usuario;
 
 
 public class Main_Prueba_dao {
     
     public static void main(String... breiner){
         
+        Usuario usr = new Usuario();
+        String cl = "";
+        
+        
+        try{
+            
+            DAOUsuario us = new DAOUsuarioImpl();
+            
+            usr = us.buscarUsuario("Lucho");
+            cl = us.desencriptar(usr);
+            
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        
+        System.out.println("Nombre: "+usr.getUsuario()+"  Contraseña: "+cl);
+        
+        
+        
+        /*
         Producto pd = new Producto();
         
         pd.setNombre("Prueba");
