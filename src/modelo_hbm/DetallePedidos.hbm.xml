@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2017 15:31:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo_hbm.DetallePedidos" table="DETALLE_PEDIDOS" catalog="Project_Database" optimistic-lock="version">
+        <composite-id name="id" class="modelo_hbm.DetallePedidosId">
+            <key-property name="idDetallePedido" type="int">
+                <column name="idDETALLE_PEDIDO" />
+            </key-property>
+            <key-property name="numPedido" type="int">
+                <column name="NUM_PEDIDO" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pedidos" class="modelo_hbm.Pedidos" update="false" insert="false" fetch="select">
+            <column name="NUM_PEDIDO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productos" class="modelo_hbm.Productos" fetch="select">
+            <column name="idPRODUCTOS" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="int">
+            <column name="CANTIDAD" not-null="true" />
+        </property>
+        <property name="precioTotal" type="double">
+            <column name="PRECIO_TOTAL" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2017 15:31:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo_hbm.Marcas" table="MARCAS" catalog="Project_Database" optimistic-lock="version">
+        <id name="idMarcas" type="java.lang.Integer">
+            <column name="idMARCAS" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="45" not-null="true" />
+        </property>
+        <set name="productoses" table="PRODUCTOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idMARCAS" not-null="true" />
+            </key>
+            <one-to-many class="modelo_hbm.Productos" />
+        </set>
+    </class>
+</hibernate-mapping>

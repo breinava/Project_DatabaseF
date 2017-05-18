@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2017 15:31:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo_hbm.Facturas" table="FACTURAS" catalog="Project_Database" optimistic-lock="version">
+        <id name="numFactura" type="java.lang.Integer">
+            <column name="NUM_FACTURA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clientes" class="modelo_hbm.Clientes" fetch="select">
+            <column name="CLIENTES_DNI" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleados" class="modelo_hbm.Empleados" fetch="select">
+            <column name="idEMPLEADOS" not-null="true" />
+        </many-to-one>
+        <many-to-one name="modoPago" class="modelo_hbm.ModoPago" fetch="select">
+            <column name="idMODO_PAGO" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="FECHA" length="19" not-null="true" />
+        </property>
+        <set name="detalleFacturases" table="DETALLE_FACTURAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUM_FACTURA" not-null="true" />
+            </key>
+            <one-to-many class="modelo_hbm.DetalleFacturas" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2017 15:31:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo_hbm.Productos" table="PRODUCTOS" catalog="Project_Database" optimistic-lock="version">
+        <id name="idProductos" type="java.lang.Integer">
+            <column name="idPRODUCTOS" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categorias" class="modelo_hbm.Categorias" fetch="select">
+            <column name="idCATEGORIAS" not-null="true" />
+        </many-to-one>
+        <many-to-one name="marcas" class="modelo_hbm.Marcas" fetch="select">
+            <column name="idMARCAS" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="45" not-null="true" />
+        </property>
+        <property name="precioCompra" type="double">
+            <column name="PRECIO_COMPRA" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="precioVenta" type="double">
+            <column name="PRECIO_VENTA" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="detalleFacturases" table="DETALLE_FACTURAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPRODUCTOS" not-null="true" />
+            </key>
+            <one-to-many class="modelo_hbm.DetalleFacturas" />
+        </set>
+        <set name="detallePedidoses" table="DETALLE_PEDIDOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPRODUCTOS" not-null="true" />
+            </key>
+            <one-to-many class="modelo_hbm.DetallePedidos" />
+        </set>
+    </class>
+</hibernate-mapping>
