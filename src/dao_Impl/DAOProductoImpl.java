@@ -6,18 +6,24 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Producto;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
+/**
+ *
+ * @author Jhoan
+ * @author Breiner
+ */
 
 public class DAOProductoImpl extends MySQL implements DAOProducto{
 
     @Override
-    public void RegistrarProducto(Producto pd) throws Exception {
+    public void RegistrarProducto(Producto pd, Acceso asc) throws Exception {
         
         int CategoriaID;
         
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM CATEGORIAS WHERE NOMBRE = ?");
             st.setString(1, pd.getName_categoria());
            
@@ -33,7 +39,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
         }
         
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO PRODUCTOS(NOMBRE,PRECIO_COMPRA,PRECIO_VENTA,idCATEGORIAS) VALUES(?,?,?,?)");
             st.setString(1, pd.getNombre());
             st.setDouble(2, pd.getPrecio1());
@@ -50,9 +56,9 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     }
 
     @Override
-    public void ModificarProducto(Producto pd) throws Exception {
+    public void ModificarProducto(Producto pd, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE PRODUCTOS SET NOMBRE = ? WHERE idPRODUCTOS = ?");
             st.setString(1, pd.getNombre());
             st.setInt(2, pd.getId());
@@ -67,9 +73,9 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     }
 
     @Override
-    public void EliminarProducto(Producto pd) throws Exception {
+    public void EliminarProducto(Producto pd, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM PRODUCTOS WHERE idPRODUCTOS = ?");
             st.setInt(1, pd.getId());
             st.executeUpdate();
@@ -83,24 +89,23 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     }
 
     @Override
-    public List<Producto> ListarProducto(Producto pd) throws Exception {
-        List<Producto> lista;
+    public List<Producto> ListarProductos(Producto pd, Acceso asc) throws Exception {
+        List<Producto> productos = null;
         
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM CATEGORIAS");
             
-            lista = new ArrayList();
+            productos = new ArrayList();
             ResultSet rs = st.executeQuery();
             
             while(rs.next()){
-                Producto p = new Producto();
-                p.setId(rs.getInt("idCATEGORIAS"));
-                p.setNombre(rs.getString("NOMBRE"));
-                p.setPrecio1(rs.getDouble("PRECIO_COMPRA"));
-                p.setPrecio2(rs.getDouble("PRECIO_VENTA"));
-                p.setIdCategoria(rs.getInt("idCATEGORIAS"));
-                lista.add(p);
+                pd.setId(rs.getInt("idCATEGORIAS"));
+                pd.setNombre(rs.getString("NOMBRE"));
+                pd.setPrecio1(rs.getDouble("PRECIO_COMPRA"));
+                pd.setPrecio2(rs.getDouble("PRECIO_VENTA"));
+                pd.setIdCategoria(rs.getInt("idCATEGORIAS"));
+                productos.add(pd);
             }
             rs.close();
             st.close();
@@ -112,7 +117,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
             this.CloseCnx();
         }
         
-        return lista;
+        return productos;
     }
     
 }

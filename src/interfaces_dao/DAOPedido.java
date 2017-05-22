@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces_dao;
 
 import java.util.List;
 import modelo_dao.Pedido;
+import mysql_conexion.Acceso;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
+
 public interface DAOPedido {
-    public void registrarPedido(Pedido pe);
-    public void editarPedido(Pedido pe);
-    public void borrarPedido(Pedido pe);
-    public List<Pedido>getPedidos();
+    public void RegistrarPedido(Pedido pe, Acceso asc) throws Exception;
+    public void ModificarPedido(Pedido pe, Acceso asc) throws Exception;
+    public void EliminarPedido(Pedido pe, Acceso asc) throws Exception;
+    public List<Pedido> ListarPedidos(Pedido pe, Acceso asc) throws Exception;
 }

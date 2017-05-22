@@ -16,6 +16,7 @@ public class Factura {
     private int clienteDni;
     private int idModoPago;
     private int idEmpleado;
+    private String fecha;
 
     public Factura() {
     }
@@ -58,5 +59,15 @@ public class Factura {
     public void setIdEmpleado(int idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+    
+    
     
 }

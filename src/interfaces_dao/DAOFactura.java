@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces_dao;
 
 import java.util.List;
 import modelo_dao.Factura;
+import mysql_conexion.Acceso;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
+
 public interface DAOFactura {
-    public void crearFactura(Factura fac);
-    public void modificarFactura(Factura fac);
-    public void eliminarFactura(Factura fac);
-    public List<Factura> getFacturas();
+    public void RegistrarFactura(Factura fac, Acceso asc) throws Exception;
+    public void ModificarFactura(Factura fac, Acceso asc) throws Exception;
+    public void EliminarFactura(Factura fac, Acceso asc) throws Exception;
+    public List<Factura> ListarFacturas(Factura fac, Acceso asc) throws Exception;
             
 }

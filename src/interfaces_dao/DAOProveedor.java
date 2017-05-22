@@ -1,22 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces_dao;
 
 import java.util.List;
 import modelo_dao.Proveedor;
+import mysql_conexion.Acceso;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
+
 public interface DAOProveedor {
     
-    public void registrarProveedor(Proveedor pr);
-    public void modificarProveedor(Proveedor pr);
-    public void borrarProveedor(Proveedor pr);
-    public List<Proveedor> listaProveedores();
+    public void RegistrarProveedor(Proveedor pr, Acceso asc) throws Exception;
+    public void ModificarProveedor(Proveedor pr, Acceso asc) throws Exception;
+    public void EliminarProveedor(Proveedor pr, Acceso asc) throws Exception;
+    public List<Proveedor> ListarProveedores(Proveedor pr, Acceso asc) throws Exception;
     
 }

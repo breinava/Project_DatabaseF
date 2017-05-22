@@ -6,16 +6,22 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Cliente;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
+/**
+ *
+ * @author Jhoan
+ * @author Breiner
+ */
 
 public class DAOClienteImpl extends MySQL implements DAOCliente{
 
     @Override
-    public void RegistrarCliente(Cliente cl) throws Exception {
+    public void RegistrarCliente(Cliente cl, Acceso asc) throws Exception {
         try{
             
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO CLIENTES VALUES(?,?,?,?,?)");
             st.setString(1, cl.getDni());
             st.setString(2, cl.getNombre());
@@ -33,10 +39,10 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
     }
 
     @Override
-    public void ModificarCliente(Cliente cl) throws Exception {
+    public void ModificarCliente(Cliente cl, Acceso asc) throws Exception {
         try{
             
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE CLIENTES SET NOMBRE = ? WHERE DNI = ?");
             st.setString(2, cl.getNombre());
             st.setString(1, cl.getDni());
@@ -50,10 +56,10 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
     }
 
     @Override
-    public void EliminarCliente(Cliente cl) throws Exception {
+    public void EliminarCliente(Cliente cl, Acceso asc) throws Exception {
         try{
             
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM CLIENTES WHERE DNI = ?");
             st.setString(2, cl.getNombre());
             st.setString(1, cl.getDni());
@@ -67,14 +73,14 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
     }
 
     @Override
-    public List<Cliente> ListarClientes(Cliente cl) throws Exception {
-        List<Cliente> lista;
+    public List<Cliente> ListarClientes(Cliente cl, Acceso asc) throws Exception {
+        List<Cliente> clientes = null;
         
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM ALMACEN");
             
-            lista = new ArrayList();
+            clientes = new ArrayList();
             ResultSet rs = st.executeQuery();
             
             while(rs.next()){
@@ -84,7 +90,7 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
                 c.setApellidos(rs.getString("APELLIDOS"));
                 c.setTelefono(rs.getString("TELEFONO"));
                 c.setEmail(rs.getString("EMAIL"));
-                lista.add(c);
+                clientes.add(c);
             }
             rs.close();
             st.close();
@@ -96,7 +102,7 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
             this.CloseCnx();
         }
         
-        return lista;
+        return clientes;
     }
     
 }

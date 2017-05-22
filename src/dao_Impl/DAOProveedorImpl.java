@@ -1,4 +1,3 @@
-
 package dao_Impl;
 
 import interfaces_dao.DAOProveedor;
@@ -10,18 +9,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Proveedor;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
+
 public class DAOProveedorImpl extends MySQL implements DAOProveedor{
 
     @Override
-    public void registrarProveedor(Proveedor pr) {
+    public void RegistrarProveedor(Proveedor pr, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st =this.Conexion.prepareStatement("INSERT INTO PROVEEDORES VALUES(?,?);");
             st.setInt(1, pr.getIdPROVEEDORES());
             st.setString(2, pr.getNombre());
@@ -34,10 +36,10 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
     }
 
     @Override
-    public void modificarProveedor(Proveedor pr) {
+    public void ModificarProveedor(Proveedor pr, Acceso asc) throws Exception {
         
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE PROVEEDORES SET NOMBRE = ? WHERE idPROVEEDORES = ?;");
             st.setString(1, pr.getNombre());
             st.setInt(2, pr.getIdPROVEEDORES());
@@ -51,9 +53,9 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
     }
 
     @Override
-    public void borrarProveedor(Proveedor pr) {
+    public void EliminarProveedor(Proveedor pr, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM PROVEEDORES WHERE idPROVEEDORES = ?");
             st.setInt(1, pr.getIdPROVEEDORES());
             st.executeUpdate();
@@ -65,18 +67,19 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
     }
 
     @Override
-    public List<Proveedor> listaProveedores() {
+    public List<Proveedor> ListarProveedores(Proveedor pr, Acceso asc) throws Exception {
         List<Proveedor> proveedores = null;
         try {
-            proveedores=new ArrayList<>();
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM PROVEEDORES");
+            
+            proveedores=new ArrayList();
             ResultSet rs = st.executeQuery();
+            
             while(rs.next()){
-                Proveedor pro = new Proveedor();
-                pro.setIdPROVEEDORES(rs.getInt(1));
-                pro.setNombre(rs.getString(2));
-                proveedores.add(pro); 
+                pr.setIdPROVEEDORES(rs.getInt(1));
+                pr.setNombre(rs.getString(2));
+                proveedores.add(pr); 
             }
               rs.close();
               st.close();
@@ -84,7 +87,8 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
             Logger.getLogger(DAOProveedorImpl.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             this.CloseCnx();
-        }        return proveedores;
+        }        
+        return proveedores;
     }
     
 }

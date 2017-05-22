@@ -6,15 +6,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Almacen;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
+/**
+ *
+ * @author Jhoan
+ * @author Breiner
+ */
 
-public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
-
+public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{ 
+    
     @Override
-    public void RegistrarAlmacen(Almacen alm) throws Exception {
+    public void RegistrarAlmacen(Almacen alm, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO ALMACEN VALUES(?,?)");
             st.setString(1, alm.getNit());
             st.setString(2, alm.getNombre());
@@ -29,9 +35,9 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
     }
 
     @Override
-    public void ModificarAlmacen(Almacen alm) throws Exception {
+    public void ModificarAlmacen(Almacen alm, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE ALMACEN SET NOMBRE = ? WHERE NIT = ?");
             st.setString(1, alm.getNombre());
             st.setString(2, alm.getNit());
@@ -46,9 +52,9 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
     }
 
     @Override
-    public void EliminarAlmacen(Almacen alm) throws Exception {
+    public void EliminarAlmacen(Almacen alm, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM ALMACEN WHERE NIT = ?");
             st.setString(1, alm.getNit());
             st.executeUpdate();
@@ -62,21 +68,21 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
     }
 
     @Override
-    public List<Almacen> ListarAlmacen(Almacen alm) throws Exception {
-        List<Almacen> lista;
+    public List<Almacen> ListarAlmacenes(Almacen alm, Acceso asc) throws Exception {
+        List<Almacen> almacenes = null;
         
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM ALMACEN");
             
-            lista = new ArrayList();
+            almacenes = new ArrayList();
             ResultSet rs = st.executeQuery();
             
             while(rs.next()){
-                Almacen al = new Almacen();
-                al.setNit(rs.getString("NIT"));
-                al.setNombre(rs.getString("NOMBRE"));
-                lista.add(al);
+                
+                alm.setNit(rs.getString("NIT"));
+                alm.setNombre(rs.getString("NOMBRE"));
+                almacenes.add(alm);
             }
             rs.close();
             st.close();
@@ -88,7 +94,7 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
             this.CloseCnx();
         }
         
-        return lista;
+        return almacenes;
     }
     
 }

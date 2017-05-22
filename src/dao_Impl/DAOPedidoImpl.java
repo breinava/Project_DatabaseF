@@ -1,4 +1,3 @@
-
 package dao_Impl;
 
 import interfaces_dao.DAOPedido;
@@ -10,18 +9,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Pedido;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
+
 public class DAOPedidoImpl extends MySQL implements DAOPedido{
 
     @Override
-    public void registrarPedido(Pedido pe) {
+    public void RegistrarPedido(Pedido pe, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO PEDIDOS VALUES(?,NOW(),?,?,?);");
             st.setInt(1, pe.getNumPedido());
             st.setInt(2, pe.getIdProve());
@@ -36,9 +38,9 @@ public class DAOPedidoImpl extends MySQL implements DAOPedido{
     }
 
     @Override
-    public void editarPedido(Pedido pe) {
+    public void ModificarPedido(Pedido pe, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE PEDIDOS SET FECHA = NOW(), idPROVEEDORES=?,"
                     + "idMODO_PAGO=?,idALMACEN=? WHERE NUM_PEDIDO=?;");
             st.setInt(1, pe.getIdProve());
@@ -54,9 +56,9 @@ public class DAOPedidoImpl extends MySQL implements DAOPedido{
     }
 
     @Override
-    public void borrarPedido(Pedido pe) {
+    public void EliminarPedido(Pedido pe, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM PEDIDOS WHERE NUM_PEDIDO =?;");
             st.setInt(1, pe.getNumPedido());
             st.executeUpdate();
@@ -68,14 +70,15 @@ public class DAOPedidoImpl extends MySQL implements DAOPedido{
     }
 
     @Override
-    public List<Pedido> getPedidos() {
-        List<Pedido> pedidos = new ArrayList<>();
+    public List<Pedido> ListarPedidos(Pedido pe, Acceso asc) throws Exception {
+        List<Pedido> pedidos = null;
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM PEDIDOS;");
+            
+            pedidos = new ArrayList();
             ResultSet rs =st.executeQuery();
             while(rs.next()){
-                Pedido pe = new Pedido();
                 pe.setNumPedido(rs.getInt(1));
                 pe.setIdProve(rs.getInt(3));
                 pe.setIdModoP(rs.getInt(4));

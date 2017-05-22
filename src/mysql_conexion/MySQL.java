@@ -10,17 +10,16 @@ public class MySQL {
     
     public static Connection Conexion = null;
     
-    
 //Conectar a DB    
-    public void MySQLCnx () throws SQLException{
+    public void MySQLCnx (Acceso asc) throws SQLException{
         try{
             Class.forName("com.mysql.jdbc.Driver");
             
             String servidor = "jdbc:mysql://localhost:3306/Project_Database";
-            String user = "root";
-            String pass = "2142"; 
+            //String user = "cajero";
+            //String pass = "Soy Cajero 1.0"; 
             
-            Conexion = DriverManager.getConnection(servidor, user, pass);
+            Conexion = DriverManager.getConnection(servidor, asc.getUser(), asc.getPass());
             System.out.println("Conexion establecida...");
             
             

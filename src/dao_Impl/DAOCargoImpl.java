@@ -1,4 +1,3 @@
-
 package dao_Impl;
 
 import interfaces_dao.DAOCargo;
@@ -10,18 +9,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Cargo;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
+
 public class DAOCargoImpl extends MySQL implements DAOCargo {
 
     @Override
-    public void registrarCargo(Cargo ca) {
+    public void RegistrarCargo(Cargo ca, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSET INTO CARGOS VALUES(?,?);");
             st.setInt(1, ca.getIdCargo());
             st.setString(2, ca.getNombre());
@@ -34,9 +36,9 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
     }
 
     @Override
-    public void modificarCargo(Cargo ca) {
+    public void ModificarCargo(Cargo ca, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE CARGOS SET NOMBRE=? WHERE idCARGO=?;");
             st.setString(1, ca.getNombre());
             st.setInt(2, ca.getIdCargo());
@@ -49,9 +51,9 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
     }
 
     @Override
-    public void borrarCargo(Cargo ca) {
+    public void EliminarCargo(Cargo ca, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM CARGOS WHERE idCARGO=?;");
             st.setInt(1, ca.getIdCargo());
             st.executeUpdate();
@@ -63,18 +65,22 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
     }
 
     @Override
-    public List<Cargo> getCargos() {
-        List<Cargo> cargos = new ArrayList<>();
-      try {
-            this.MySQLCnx();
+    public List<Cargo> ListarCargos(Cargo ca, Acceso asc) throws Exception {
+        List<Cargo> cargos = null;
+      
+        try {
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM CARGOS;");
+            
+            cargos = new ArrayList();
             ResultSet rs = st.executeQuery();
+        
             while(rs.next()){
-                Cargo ca = new Cargo();
                 ca.setIdCargo(rs.getInt(1));
                 ca.setNombre(rs.getString(2));
                 cargos.add(ca);
             }
+            
             rs.close();
             st.close();
         } catch (SQLException ex) {
@@ -82,7 +88,8 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
         }finally{
             this.CloseCnx();
         }
-      return cargos;
+      
+        return cargos;
     }
     
 }

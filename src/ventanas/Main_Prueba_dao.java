@@ -20,6 +20,7 @@ import modelo_dao.Factura;
 import modelo_dao.ModoPago;
 import modelo_dao.Producto;
 import modelo_dao.Usuario;
+import mysql_conexion.Acceso;
 
 
 public class Main_Prueba_dao {
@@ -32,10 +33,20 @@ public class Main_Prueba_dao {
         
         try{
             
-            DAOUsuario us = new DAOUsuarioImpl();
+            DAOUsuarioImpl us = new DAOUsuarioImpl();
             
-            usr = us.buscarUsuario("Lucho");
-            cl = us.desencriptar(usr);
+            Acceso a = new Acceso();
+            Acceso b = new Acceso();
+            
+            b.setUser("root");
+            b.setPass("2142");
+            
+            
+            a.setUser("cajero");
+            a.setPass("Soy Cajero 1.0");
+            
+            usr = us.BuscarUsuario("Lucho",b);
+            cl = us.Desencriptar(usr,b);
             
         }catch(Exception e){
             System.err.println(e.getMessage());

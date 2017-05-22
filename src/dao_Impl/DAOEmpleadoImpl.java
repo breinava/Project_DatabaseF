@@ -1,4 +1,3 @@
-
 package dao_Impl;
 
 import interfaces_dao.DAOEmpleado;
@@ -10,18 +9,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Empleado;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
+
 public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
 
     @Override
-    public void registraEmpleado(Empleado e) {
+    public void RegistraEmpleado(Empleado e, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO EMPLEADOS VALUES(?,?,?,?,?,?);");
             st.setInt(1, e.getIdEmpleado());
             st.setString(2, e.getNombre());
@@ -38,9 +40,9 @@ public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
     }
 
     @Override
-    public void modificarEmpleado(Empleado e) {
+    public void ModificarEmpleado(Empleado e, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE EMPLEADOS SET NOMBRE=?, APELLIDOS =?, "
                     + "idCARGO=?, idUSERS=?, ALMACEN_NIT=?");
             st.setString(1, e.getNombre());
@@ -58,9 +60,9 @@ public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
     }
 
     @Override
-    public void eliminarEmpleado(Empleado e) {
+    public void EliminarEmpleado(Empleado e, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM EMPLEADOS WHERE idEMPELADOS=?");
             st.setInt(1, e.getIdEmpleado());
             st.executeUpdate();
@@ -72,15 +74,16 @@ public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
     }
 
     @Override
-    public List<Empleado> getEmpleados() {
-        List<Empleado>empleados= null;
+    public List<Empleado> ListarEmpleados(Empleado e, Acceso asc) throws Exception {
+        List<Empleado> empleados = null;
         try {
-            this.MySQLCnx();
-            empleados= new ArrayList<>();
+            this.MySQLCnx(asc);
             PreparedStatement st= this.Conexion.prepareStatement("SELECT * FROM EMPLEADOS");
+            
+            empleados= new ArrayList();
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                Empleado e = new Empleado();
+            
+            while(rs.next()){                
                 e.setIdEmpleado(rs.getInt("idEMPLEADOS"));
                 e.setNombre(rs.getString("NOMBRE"));
                 e.setApellido(rs.getString("APELLIDOS"));

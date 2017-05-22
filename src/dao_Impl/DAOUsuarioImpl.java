@@ -1,4 +1,3 @@
-
 package dao_Impl;
 
 import interfaces_dao.DAOUsuario;
@@ -10,18 +9,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Usuario;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
 /**
  *
  * @author Jhoan
+ * @author Breiner
  */
-public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
 
+public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
+    
     @Override
-    public void registrarUsuario(Usuario u) {
+    public void RegistrarUsuario(Usuario u, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("CALL Registra_Usuarios(?,?,?,?);");
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());
@@ -36,9 +38,9 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public void editarUsuario(Usuario u) {
+    public void ModificarUsuario(Usuario u, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE USUARIOS SET USUARIO =?, EMAIL =?, PASS=?, TIPO=? WHERE idUSERS=?;");
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());
@@ -54,9 +56,9 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public void eliminarUsuario(Usuario u) {
+    public void EliminarUsuario(Usuario u, Acceso asc) throws Exception {
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM USUARIOS WHERE idUSERS=?;");
             st.setInt(1, u.getIdUsu());
             st.executeUpdate();
@@ -68,14 +70,16 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public List<Usuario> getUsuarios() {
-        List<Usuario>usuarios=new ArrayList<>();
+    public List<Usuario> ListarUsuarios(Usuario u, Acceso asc) throws Exception {
+        List<Usuario> usuarios = null;
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS");
+            
+            usuarios = new ArrayList();
             ResultSet rs=st.executeQuery();
+            
             while(rs.next()){
-                Usuario u = new Usuario();
                 u.setIdUsu(rs.getInt(1));
                 u.setUsuario(rs.getString(2));
                 u.setEmail(rs.getString(3));
@@ -94,12 +98,12 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public String desencriptar(Usuario u) {
+    public String Desencriptar(Usuario u, Acceso asc) throws Exception {
         
         String clave = "";
         
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT Desencriptar_Clave(?) AS CLAVE;");
             st.setString(1, u.getUsuario());
             
@@ -119,14 +123,15 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public Usuario buscarUsuario(String usr) {
+    public Usuario BuscarUsuario(String usr, Acceso asc) throws Exception {
         Usuario u = new  Usuario();
         
         try {
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS WHERE USUARIO = ?;");
             st.setString(1, usr);
             ResultSet rs=st.executeQuery();
+            
             rs.next();
             
             u.setIdUsu(rs.getInt(1));

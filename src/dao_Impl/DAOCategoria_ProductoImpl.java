@@ -6,15 +6,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Categoria_Producto;
+import mysql_conexion.Acceso;
 import mysql_conexion.MySQL;
 
+/**
+ *
+ * @author Jhoan
+ * @author Breiner
+ */
 
 public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Producto{
 
     @Override
-    public void RegistrarCategoriaP(Categoria_Producto cp) throws Exception {
+    public void RegistrarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO CATEGORIAS(NOMBRE,DESCRIPCION) VALUES(?,?)");
             st.setString(1, cp.getNombre());
             st.setString(2, cp.getDescripcion());
@@ -29,9 +35,9 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
     }
 
     @Override
-    public void ModificarCategoriaP(Categoria_Producto cp) throws Exception {
+    public void ModificarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE CATEGORIAS SET NOMBRE = ? WHERE idCATEGORIAS = ?");
             st.setString(1, cp.getNombre());
             st.setInt(2, cp.getId());
@@ -46,9 +52,9 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
     }
 
     @Override
-    public void EliminarCategoriaP(Categoria_Producto cp) throws Exception {
+    public void EliminarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM CATEGORIAS WHERE idCATEGORIAS = ?");
             st.setInt(1, cp.getId());
             st.executeUpdate();
@@ -62,22 +68,21 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
     }
 
     @Override
-    public List<Categoria_Producto> ListarCategoriaP(Categoria_Producto cp) throws Exception {
-        List<Categoria_Producto> lista;
+    public List<Categoria_Producto> ListarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
+        List<Categoria_Producto> categorias_P = null;
         
         try{
-            this.MySQLCnx();
+            this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM CATEGORIAS");
             
-            lista = new ArrayList();
+            categorias_P = new ArrayList();
             ResultSet rs = st.executeQuery();
             
             while(rs.next()){
-                Categoria_Producto cpd = new Categoria_Producto();
-                cpd.setId(rs.getInt("idCATEGORIAS"));
-                cpd.setNombre(rs.getString("NOMBRE"));
-                cpd.setDescripcion(rs.getString("DESCRIPCION"));
-                lista.add(cpd);
+                cp.setId(rs.getInt("idCATEGORIAS"));
+                cp.setNombre(rs.getString("NOMBRE"));
+                cp.setDescripcion(rs.getString("DESCRIPCION"));
+                categorias_P.add(cp);
             }
             rs.close();
             st.close();
@@ -89,7 +94,7 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
             this.CloseCnx();
         }
         
-        return lista;
+        return categorias_P;
     }
     
 }
