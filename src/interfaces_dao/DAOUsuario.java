@@ -17,7 +17,7 @@ public interface DAOUsuario {
     public void EliminarUsuario(Usuario u, Acceso asc) throws Exception;
     public Usuario BuscarUsuario(String usr, Acceso asc) throws Exception;
     public String Desencriptar(Usuario u, Acceso asc) throws Exception;
-    public List<Usuario> ListarUsuarios(Usuario u, Acceso asc) throws Exception;
+    public List<Usuario> ListarUsuarios( Acceso asc) throws Exception;
     
 
 }

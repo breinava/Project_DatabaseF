@@ -7,6 +7,17 @@ public class Categoria_Producto {
     private String nombre;
     private String descripcion;
 
+    public Categoria_Producto(int id, String nombre, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
+    public Categoria_Producto() {
+    }
+    
+    
+
     public int getId() {
         return id;
     }

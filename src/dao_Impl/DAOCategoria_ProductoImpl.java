@@ -68,8 +68,9 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
     }
 
     @Override
-    public List<Categoria_Producto> ListarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
+    public List<Categoria_Producto> ListarCategoriaP(Acceso asc) throws Exception {
         List<Categoria_Producto> categorias_P = null;
+        Categoria_Producto cp= new Categoria_Producto();
         
         try{
             this.MySQLCnx(asc);
@@ -80,10 +81,13 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
             
             while(rs.next()){
                 cp.setId(rs.getInt("idCATEGORIAS"));
+                System.out.println(rs.getInt("idCATEGORIAS"));
                 cp.setNombre(rs.getString("NOMBRE"));
                 cp.setDescripcion(rs.getString("DESCRIPCION"));
                 categorias_P.add(cp);
             }
+            
+            
             rs.close();
             st.close();
             
