@@ -35,47 +35,37 @@ public class Main_Prueba_dao {
     
     public static void main(String... breiner) throws Exception{
         a.setUser("root");
-        a.setPass("olivo-320");
-        
+        a.setPass(""); 
      /*Usuario usr = new Usuario();
         String cl = "";
-        
-        
         try{
-            
             DAOUsuarioImpl us = new DAOUsuarioImpl();
-            
             Acceso a = new Acceso();
             Acceso b = new Acceso();
-            
             b.setUser("root");
             b.setPass("2142");
-            
-            
             a.setUser("cajero");
             a.setPass("Soy Cajero 1.0");
-            
             usr = us.BuscarUsuario("Lucho",b);
-            cl = us.Desencriptar(usr,b);
-            
+            cl = us.Desencriptar(usr,b);  
         }catch(Exception e){
             System.err.println(e.getMessage());
         }
-        
         System.out.println("Nombre: "+usr.getUsuario()+"  Contraseña: "+cl);*/
      int op=0;
-        System.out.println("-Menu Caja-");
-        System.out.println("1 Menu de Usuarios");
-        System.out.println("2 Menu de Clientes ");
-        System.out.println("3 Menu de Empleados");
-        System.out.println("4 Menu de Almacenes");
-        System.out.println("5 Menu de proveedores");
-        System.out.println("6 Menu de Pedidos");
-        System.out.println("7 Menu de Productos");
-        System.out.println("8 Menu de Categorias");
-        System.out.println("9 Salir");
-        op=es.nextInt();
+       
         do{
+            System.out.println("-Menu Caja-");
+            System.out.println("1 Menu de Usuarios");
+            System.out.println("2 Menu de Clientes ");
+            System.out.println("3 Menu de Empleados");
+            System.out.println("4 Menu de Almacenes");
+            System.out.println("5 Menu de proveedores");
+            System.out.println("6 Menu de Pedidos");
+            System.out.println("7 Menu de Productos");
+            System.out.println("8 Menu de Categorias");
+            System.out.println("9 Salir");
+            op=es.nextInt();
             switch(op){
                 case 1:
                     menuUsuario();
@@ -214,11 +204,11 @@ public class Main_Prueba_dao {
         int opc=0;
         do{
             System.out.println("---Menu Empleados---");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
+            System.out.println("1 Registrar un empleado");
+            System.out.println("2 Editar un empleado");
+            System.out.println("3 Eliminar empleado");
+            System.out.println("4 Listar empleados");
+            System.out.println("5 Salir");
             opc=s.nextInt();
             switch(opc){
                 case 1:
@@ -244,12 +234,12 @@ public class Main_Prueba_dao {
         Scanner s = new Scanner(System.in);
         int opc=0;
         do{
-            System.out.println("---Menu Alamacen----");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
+            System.out.println("---Menu Almacen----");
+            System.out.println("1 Regsitrar un nuevo almacen");
+            System.out.println("2 Editar un almacen");
+            System.out.println("3 Eliminar un almacen");
+            System.out.println("4 Listar los almacenes");
+            System.out.println("5 Salir");
             opc=s.nextInt();
             switch(opc){
                 case 1:
@@ -276,11 +266,11 @@ public class Main_Prueba_dao {
         int opc=0;
         do{
             System.out.println("---Menu Proveedoor---");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
+            System.out.println("1 Regsitrar un nuevo proveedor");
+            System.out.println("2 Editar un proveedor");
+            System.out.println("3 Eliminar un proveedor");
+            System.out.println("4 Listar proveedores");
+            System.out.println("5 salir");
             opc=s.nextInt();
             switch(opc){
                 case 1:
@@ -305,6 +295,7 @@ public class Main_Prueba_dao {
     public static void menuUsuario() throws Exception{
         Scanner s = new Scanner(System.in);
         int opc=0;
+        boolean salir=false;
         do{
               System.out.println("---Menu Usuarios---");
               System.out.println("1 Registrar un Usuario");
@@ -334,13 +325,13 @@ public class Main_Prueba_dao {
                     listarUsuarios();
                     break;
                 case 5:
-                    opc=6;
+                    salir=true;
                     break;
                 default:
                     System.out.println("Opcion no disponible");
                     break;  
             }
-        }while(opc!=6);
+        }while(salir==false);
         
     }
     
@@ -384,12 +375,12 @@ public class Main_Prueba_dao {
         Scanner s = new Scanner(System.in);
         int opc=0;
         do{
-            System.out.println("---Menu client---");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
+            System.out.println("---Menu cliente---");
+            System.out.println("1 Regsitrar clientes");
+            System.out.println("2 Modificar un cliente");
+            System.out.println("3 Eliminar Clientes");
+            System.out.println("4 Listar Clientes");
+            System.out.println("5 Salir");
             opc=s.nextInt();
             switch(opc){
                 case 1:
@@ -416,11 +407,11 @@ public class Main_Prueba_dao {
         int opc=0;
         do{
             System.out.println("---Menu Pedido--");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
+            System.out.println("1 Hacer un pedido");
+            System.out.println("2 Modificar un pedido");
+            System.out.println("3 Eliminar un pedido");
+            System.out.println("4 Listar pedidos registrados");
+            System.out.println("5 salir");
             opc=s.nextInt();
             switch(opc){
                 case 1:
@@ -439,6 +430,7 @@ public class Main_Prueba_dao {
                     break;  
             }
         }while(opc!=6);
+        
         
     }
 

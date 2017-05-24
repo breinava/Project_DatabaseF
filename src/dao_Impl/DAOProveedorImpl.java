@@ -27,7 +27,7 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
             PreparedStatement st =this.Conexion.prepareStatement("INSERT INTO PROVEEDORES VALUES(?,?);");
             st.setInt(1, pr.getIdPROVEEDORES());
             st.setString(2, pr.getNombre());
-            st.executeLargeUpdate();
+            st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOProveedorImpl.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
