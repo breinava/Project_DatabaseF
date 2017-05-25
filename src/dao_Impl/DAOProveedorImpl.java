@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Proveedor;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -21,7 +21,7 @@ import mysql_conexion.MySQL;
 public class DAOProveedorImpl extends MySQL implements DAOProveedor{
 
     @Override
-    public void RegistrarProveedor(Proveedor pr, Acceso asc) throws Exception {
+    public void RegistrarProveedor(Proveedor pr, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st =this.Conexion.prepareStatement("INSERT INTO PROVEEDORES VALUES(?,?);");
@@ -36,7 +36,7 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
     }
 
     @Override
-    public void ModificarProveedor(Proveedor pr, Acceso asc) throws Exception {
+    public void ModificarProveedor(Proveedor pr, Rol asc) throws Exception {
         
         try {
             this.MySQLCnx(asc);
@@ -53,7 +53,7 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
     }
 
     @Override
-    public void EliminarProveedor(Proveedor pr, Acceso asc) throws Exception {
+    public void EliminarProveedor(Proveedor pr, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM PROVEEDORES WHERE idPROVEEDORES = ?");
@@ -67,7 +67,7 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
     }
 
     @Override
-    public List<Proveedor> ListarProveedores(Proveedor pr, Acceso asc) throws Exception {
+    public List<Proveedor> ListarProveedores(Proveedor pr, Rol asc) throws Exception {
         List<Proveedor> proveedores = null;
         try {
             this.MySQLCnx(asc);

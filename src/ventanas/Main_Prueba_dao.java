@@ -25,17 +25,17 @@ import modelo_dao.Factura;
 import modelo_dao.ModoPago;
 import modelo_dao.Producto;
 import modelo_dao.Usuario;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 
 
 public class Main_Prueba_dao {
-    public static  Acceso a = new Acceso();
+    public static  Rol a = new Rol();
     public static Scanner es = new Scanner(System.in); 
     public static Correo c = new Correo();
     
     public static void main(String... breiner) throws Exception{
-        a.setUser("root");
-        a.setPass(""); 
+        a.setNombre("root");
+        a.setClave("Soy Root NV.1"); 
      /*Usuario usr = new Usuario();
         String cl = "";
         try{
@@ -468,7 +468,7 @@ public class Main_Prueba_dao {
                     
             //System.out.println("Escriba el tipo");
             //tipo= s.nextBoolean();
-            usua= new Usuario(idusu, usuario, email, pass, true);
+            usua= new Usuario(idusu, usuario, email, pass);
             usuImp.RegistrarUsuario(usua,a);
             
             c.setContraseña("ybrsyumnqftsodse");

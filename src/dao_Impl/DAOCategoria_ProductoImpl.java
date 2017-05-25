@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Categoria_Producto;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -18,7 +18,7 @@ import mysql_conexion.MySQL;
 public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Producto{
 
     @Override
-    public void RegistrarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
+    public void RegistrarCategoriaP(Categoria_Producto cp, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO CATEGORIAS(NOMBRE,DESCRIPCION) VALUES(?,?)");
@@ -35,7 +35,7 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
     }
 
     @Override
-    public void ModificarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
+    public void ModificarCategoriaP(Categoria_Producto cp, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE CATEGORIAS SET NOMBRE = ? WHERE idCATEGORIAS = ?");
@@ -52,7 +52,7 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
     }
 
     @Override
-    public void EliminarCategoriaP(Categoria_Producto cp, Acceso asc) throws Exception {
+    public void EliminarCategoriaP(Categoria_Producto cp, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM CATEGORIAS WHERE idCATEGORIAS = ?");
@@ -68,7 +68,7 @@ public class DAOCategoria_ProductoImpl extends MySQL implements DAOCategoria_Pro
     }
 
     @Override
-    public List<Categoria_Producto> ListarCategoriaP(Acceso asc) throws Exception {
+    public List<Categoria_Producto> ListarCategoriaP(Rol asc) throws Exception {
         List<Categoria_Producto> categorias_P = null;
         Categoria_Producto cp= new Categoria_Producto();
         

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Pedido;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -21,7 +21,7 @@ import mysql_conexion.MySQL;
 public class DAOPedidoImpl extends MySQL implements DAOPedido{
 
     @Override
-    public void RegistrarPedido(Pedido pe, Acceso asc) throws Exception {
+    public void RegistrarPedido(Pedido pe, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO PEDIDOS VALUES(?,NOW(),?,?,?);");
@@ -38,7 +38,7 @@ public class DAOPedidoImpl extends MySQL implements DAOPedido{
     }
 
     @Override
-    public void ModificarPedido(Pedido pe, Acceso asc) throws Exception {
+    public void ModificarPedido(Pedido pe, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE PEDIDOS SET FECHA = NOW(), idPROVEEDORES=?,"
@@ -56,7 +56,7 @@ public class DAOPedidoImpl extends MySQL implements DAOPedido{
     }
 
     @Override
-    public void EliminarPedido(Pedido pe, Acceso asc) throws Exception {
+    public void EliminarPedido(Pedido pe, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM PEDIDOS WHERE NUM_PEDIDO =?;");
@@ -70,7 +70,7 @@ public class DAOPedidoImpl extends MySQL implements DAOPedido{
     }
 
     @Override
-    public List<Pedido> ListarPedidos(Pedido pe, Acceso asc) throws Exception {
+    public List<Pedido> ListarPedidos(Pedido pe, Rol asc) throws Exception {
         List<Pedido> pedidos = null;
         try {
             this.MySQLCnx(asc);

@@ -2,7 +2,7 @@ package interfaces_dao;
 
 import java.util.List;
 import modelo_dao.Cargo;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 
 /**
  *
@@ -11,8 +11,8 @@ import mysql_conexion.Acceso;
  */
 
 public interface DAOCargo {
-    public void RegistrarCargo(Cargo ca, Acceso asc) throws Exception;
-    public void ModificarCargo(Cargo ca, Acceso asc) throws Exception;
-    public void EliminarCargo(Cargo ca, Acceso asc) throws Exception;
-    public List<Cargo> ListarCargos(Cargo ca, Acceso asc) throws Exception;
+    public void RegistrarCargo(Cargo ca, Rol asc) throws Exception;
+    public void ModificarCargo(Cargo ca, Rol asc) throws Exception;
+    public void EliminarCargo(Cargo ca, Rol asc) throws Exception;
+    public List<Cargo> ListarCargos(Cargo ca, Rol asc) throws Exception;
 }

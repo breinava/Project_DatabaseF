@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Cargo;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -21,7 +21,7 @@ import mysql_conexion.MySQL;
 public class DAOCargoImpl extends MySQL implements DAOCargo {
 
     @Override
-    public void RegistrarCargo(Cargo ca, Acceso asc) throws Exception {
+    public void RegistrarCargo(Cargo ca, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSET INTO CARGOS VALUES(?,?);");
@@ -36,7 +36,7 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
     }
 
     @Override
-    public void ModificarCargo(Cargo ca, Acceso asc) throws Exception {
+    public void ModificarCargo(Cargo ca, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE CARGOS SET NOMBRE=? WHERE idCARGO=?;");
@@ -51,7 +51,7 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
     }
 
     @Override
-    public void EliminarCargo(Cargo ca, Acceso asc) throws Exception {
+    public void EliminarCargo(Cargo ca, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM CARGOS WHERE idCARGO=?;");
@@ -65,7 +65,7 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
     }
 
     @Override
-    public List<Cargo> ListarCargos(Cargo ca, Acceso asc) throws Exception {
+    public List<Cargo> ListarCargos(Cargo ca, Rol asc) throws Exception {
         List<Cargo> cargos = null;
       
         try {

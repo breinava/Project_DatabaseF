@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Almacen;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -18,7 +18,7 @@ import mysql_conexion.MySQL;
 public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{ 
     
     @Override
-    public void RegistrarAlmacen(Almacen alm, Acceso asc) throws Exception {
+    public void RegistrarAlmacen(Almacen alm, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO ALMACEN VALUES(?,?)");
@@ -35,7 +35,7 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
     }
 
     @Override
-    public void ModificarAlmacen(Almacen alm, Acceso asc) throws Exception {
+    public void ModificarAlmacen(Almacen alm, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE ALMACEN SET NOMBRE = ? WHERE NIT = ?");
@@ -52,7 +52,7 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
     }
 
     @Override
-    public void EliminarAlmacen(Almacen alm, Acceso asc) throws Exception {
+    public void EliminarAlmacen(Almacen alm, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM ALMACEN WHERE NIT = ?");
@@ -68,7 +68,7 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
     }
 
     @Override
-    public List<Almacen> ListarAlmacenes(Almacen alm, Acceso asc) throws Exception {
+    public List<Almacen> ListarAlmacenes(Almacen alm, Rol asc) throws Exception {
         List<Almacen> almacenes = null;
         
         try{

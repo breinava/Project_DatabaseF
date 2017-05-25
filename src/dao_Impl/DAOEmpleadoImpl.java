@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Empleado;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -21,7 +21,7 @@ import mysql_conexion.MySQL;
 public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
 
     @Override
-    public void RegistraEmpleado(Empleado e, Acceso asc) throws Exception {
+    public void RegistraEmpleado(Empleado e, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO EMPLEADOS VALUES(?,?,?,?,?,?);");
@@ -40,7 +40,7 @@ public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
     }
 
     @Override
-    public void ModificarEmpleado(Empleado e, Acceso asc) throws Exception {
+    public void ModificarEmpleado(Empleado e, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE EMPLEADOS SET NOMBRE=?, APELLIDOS =?, "
@@ -60,7 +60,7 @@ public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
     }
 
     @Override
-    public void EliminarEmpleado(Empleado e, Acceso asc) throws Exception {
+    public void EliminarEmpleado(Empleado e, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM EMPLEADOS WHERE idEMPELADOS=?");
@@ -74,7 +74,7 @@ public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
     }
 
     @Override
-    public List<Empleado> ListarEmpleados(Empleado e, Acceso asc) throws Exception {
+    public List<Empleado> ListarEmpleados(Empleado e, Rol asc) throws Exception {
         List<Empleado> empleados = null;
         try {
             this.MySQLCnx(asc);

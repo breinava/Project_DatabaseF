@@ -11,15 +11,15 @@ public class MySQL {
     public static Connection Conexion = null;
     
 //Conectar a DB    
-    public void MySQLCnx (Acceso asc) throws SQLException{
+    public void MySQLCnx (Rol asc) throws SQLException{
         try{
             Class.forName("com.mysql.jdbc.Driver");
             
-            String servidor = "jdbc:mysql://localhost:3306/proyecto_data_base2";
+            String servidor = "jdbc:mysql://localhost:3306/Project_Database";
             //String user = "cajero";
             //String pass = "Soy Cajero 1.0"; 
             
-            Conexion = DriverManager.getConnection(servidor, asc.getUser(), asc.getPass());
+            Conexion = DriverManager.getConnection(servidor, asc.getNombre(), asc.getClave());
             System.out.println("Conexion establecida...");
             
             

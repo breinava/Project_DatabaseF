@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Cliente;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -18,7 +18,7 @@ import mysql_conexion.MySQL;
 public class DAOClienteImpl extends MySQL implements DAOCliente{
 
     @Override
-    public void RegistrarCliente(Cliente cl, Acceso asc) throws Exception {
+    public void RegistrarCliente(Cliente cl, Rol asc) throws Exception {
         try{
             
             this.MySQLCnx(asc);
@@ -39,7 +39,7 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
     }
 
     @Override
-    public void ModificarCliente(Cliente cl, Acceso asc) throws Exception {
+    public void ModificarCliente(Cliente cl, Rol asc) throws Exception {
         try{
             
             this.MySQLCnx(asc);
@@ -56,7 +56,7 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
     }
 
     @Override
-    public void EliminarCliente(Cliente cl, Acceso asc) throws Exception {
+    public void EliminarCliente(Cliente cl, Rol asc) throws Exception {
         try{
             
             this.MySQLCnx(asc);
@@ -73,7 +73,7 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
     }
 
     @Override
-    public List<Cliente> ListarClientes(Cliente cl, Acceso asc) throws Exception {
+    public List<Cliente> ListarClientes(Cliente cl, Rol asc) throws Exception {
         List<Cliente> clientes = null;
         
         try{

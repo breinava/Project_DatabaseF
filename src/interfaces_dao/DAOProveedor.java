@@ -2,7 +2,7 @@ package interfaces_dao;
 
 import java.util.List;
 import modelo_dao.Proveedor;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 
 /**
  *
@@ -12,9 +12,9 @@ import mysql_conexion.Acceso;
 
 public interface DAOProveedor {
     
-    public void RegistrarProveedor(Proveedor pr, Acceso asc) throws Exception;
-    public void ModificarProveedor(Proveedor pr, Acceso asc) throws Exception;
-    public void EliminarProveedor(Proveedor pr, Acceso asc) throws Exception;
-    public List<Proveedor> ListarProveedores(Proveedor pr, Acceso asc) throws Exception;
+    public void RegistrarProveedor(Proveedor pr, Rol asc) throws Exception;
+    public void ModificarProveedor(Proveedor pr, Rol asc) throws Exception;
+    public void EliminarProveedor(Proveedor pr, Rol asc) throws Exception;
+    public List<Proveedor> ListarProveedores(Proveedor pr, Rol asc) throws Exception;
     
 }

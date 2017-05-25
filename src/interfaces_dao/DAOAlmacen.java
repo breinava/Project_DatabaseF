@@ -2,7 +2,7 @@ package interfaces_dao;
 
 import java.util.List;
 import modelo_dao.Almacen;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 
 /**
  *
@@ -12,8 +12,8 @@ import mysql_conexion.Acceso;
 
 public interface DAOAlmacen {
     
-    public void RegistrarAlmacen(Almacen alm, Acceso asc)throws Exception;
-    public void ModificarAlmacen(Almacen alm, Acceso asc)throws Exception;
-    public void EliminarAlmacen(Almacen alm, Acceso asc)throws Exception;
-    public List<Almacen> ListarAlmacenes(Almacen alm, Acceso asc)throws Exception;
+    public void RegistrarAlmacen(Almacen alm, Rol asc)throws Exception;
+    public void ModificarAlmacen(Almacen alm, Rol asc)throws Exception;
+    public void EliminarAlmacen(Almacen alm, Rol asc)throws Exception;
+    public List<Almacen> ListarAlmacenes(Almacen alm, Rol asc)throws Exception;
 }

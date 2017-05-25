@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Empleado;
 import modelo_dao.Factura;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -22,7 +22,7 @@ import mysql_conexion.MySQL;
 public class DAOFacturaImpl extends MySQL implements DAOFactura{
 
     @Override
-    public void RegistrarFactura(Factura fac, Acceso asc) throws Exception {
+    public void RegistrarFactura(Factura fac, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO FACTURAS VALUES(?,now(),?,?,?)");
@@ -39,7 +39,7 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
     }
 
     @Override
-    public void ModificarFactura(Factura fac, Acceso asc) throws Exception {
+    public void ModificarFactura(Factura fac, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE FACTURAS SET FECHA = NOW(), CLIENTES_DNI = ?, "
@@ -58,7 +58,7 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
     }
 
     @Override
-    public void EliminarFactura(Factura fac, Acceso asc) throws Exception {
+    public void EliminarFactura(Factura fac, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st=this.Conexion.prepareStatement("DELETE FROM FACTURAS WHERE NUM_FACTURA = ?");
@@ -72,7 +72,7 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
     }
 
     @Override
-    public List<Factura> ListarFacturas(Factura fac, Acceso asc) throws Exception {
+    public List<Factura> ListarFacturas(Factura fac, Rol asc) throws Exception {
         List<Factura> facturas = null;
         
         try {

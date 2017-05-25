@@ -2,7 +2,7 @@ package interfaces_dao;
 
 import java.util.List;
 import modelo_dao.Producto;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 
 /**
  *
@@ -12,9 +12,9 @@ import mysql_conexion.Acceso;
 
 public interface DAOProducto {
     
-    public void RegistrarProducto(Producto pd, Acceso asc) throws Exception;
-    public void ModificarProducto(Producto pd, Acceso asc) throws Exception;
-    public void EliminarProducto(Producto pd, Acceso asc) throws Exception;
-    public List<Producto> ListarProductos(Producto pd, Acceso asc) throws Exception;
+    public void RegistrarProducto(Producto pd, Rol asc) throws Exception;
+    public void ModificarProducto(Producto pd, Rol asc) throws Exception;
+    public void EliminarProducto(Producto pd, Rol asc) throws Exception;
+    public List<Producto> ListarProductos(Producto pd, Rol asc) throws Exception;
     
 }

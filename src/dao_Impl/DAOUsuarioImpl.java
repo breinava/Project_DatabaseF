@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.Usuario;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -21,14 +21,13 @@ import mysql_conexion.MySQL;
 public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     
     @Override
-    public void RegistrarUsuario(Usuario u, Acceso asc) throws Exception {
+    public void RegistrarUsuario(Usuario u, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
-            PreparedStatement st = this.Conexion.prepareStatement("CALL Registra_Usuarios(?,?,?,?);");
+            PreparedStatement st = this.Conexion.prepareStatement("CALL Registra_Usuarios(?,?,?);");
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());
             st.setString(3, u.getPass());
-            st.setBoolean(4, u.getEstado());
             st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,14 +37,13 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public void ModificarUsuario(Usuario u, Acceso asc) throws Exception {
+    public void ModificarUsuario(Usuario u, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
-            PreparedStatement st = this.Conexion.prepareStatement("UPDATE USUARIOS SET USUARIO =?, EMAIL =?, PASS=?, TIPO=? WHERE idUSERS=?;");
+            PreparedStatement st = this.Conexion.prepareStatement("UPDATE USUARIOS SET USUARIO =?, EMAIL =?, PASS=? WHERE idUSERS=?;");
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());
             st.setString(3, u.getPass());
-            st.setBoolean(4, u.getEstado());
             st.setInt(1, u.getIdUsu());
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -56,7 +54,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public void EliminarUsuario(Usuario u, Acceso asc) throws Exception {
+    public void EliminarUsuario(Usuario u, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM USUARIOS WHERE idUSERS=?;");
@@ -70,7 +68,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public List<Usuario> ListarUsuarios(Acceso asc) throws Exception {
+    public List<Usuario> ListarUsuarios(Rol asc) throws Exception {
         List<Usuario> usuarios = null;
         Usuario u = new Usuario();
         try {
@@ -85,7 +83,6 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
                 u.setUsuario(rs.getString(2));
                 u.setEmail(rs.getString(3));
                 u.setPass(rs.getString(4));
-                u.setEstado(rs.getBoolean(5));
                 usuarios.add(u);
             }
             
@@ -101,7 +98,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public String Desencriptar(Usuario u, Acceso asc) throws Exception {
+    public String Desencriptar(Usuario u, Rol asc) throws Exception {
         
         String clave = "";
         
@@ -126,7 +123,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     }
 
     @Override
-    public Usuario BuscarUsuario(String usr, Acceso asc) throws Exception {
+    public Usuario BuscarUsuario(String usr, Rol asc) throws Exception {
         Usuario u = new  Usuario();
         
         try {
@@ -141,7 +138,6 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
             u.setUsuario(rs.getString(2));
             u.setEmail(rs.getString(3));
             u.setPass(rs.getString(4));
-            u.setEstado(rs.getBoolean(5));
             
             rs.close();
             st.close();

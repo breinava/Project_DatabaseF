@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_dao.ModoPago;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -21,7 +21,7 @@ import mysql_conexion.MySQL;
 public class DAOModoPagoImpl extends MySQL implements DAOModoPago {
 
     @Override
-    public void RegistarModoPago(ModoPago pago, Acceso asc) throws Exception {
+    public void RegistarModoPago(ModoPago pago, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO MODO_PAGO VALUES(?,?);");
@@ -36,7 +36,7 @@ public class DAOModoPagoImpl extends MySQL implements DAOModoPago {
     }
 
     @Override
-    public void ModificarModoPago(ModoPago pago, Acceso asc) throws Exception {
+    public void ModificarModoPago(ModoPago pago, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st =this.Conexion.prepareStatement("UPDATE MODO_PAGO SET NOMBRE =? WHERE idMODO_PAGO=?");
@@ -51,7 +51,7 @@ public class DAOModoPagoImpl extends MySQL implements DAOModoPago {
     }
 
     @Override
-    public void EliminarModoPago(ModoPago pago, Acceso asc) throws Exception {
+    public void EliminarModoPago(ModoPago pago, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("delete from MODO_PAGO WHERE idMODO_PAGO = ?;");
@@ -66,7 +66,7 @@ public class DAOModoPagoImpl extends MySQL implements DAOModoPago {
     }
 
     @Override
-    public List<ModoPago> ListarModoPagos(ModoPago pago, Acceso asc) throws Exception {
+    public List<ModoPago> ListarModoPagos(ModoPago pago, Rol asc) throws Exception {
         List<ModoPago> modosPagos=null;
            
         try {

@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import modelo_dao.Producto;
-import mysql_conexion.Acceso;
+import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 
 /**
@@ -18,7 +18,7 @@ import mysql_conexion.MySQL;
 public class DAOProductoImpl extends MySQL implements DAOProducto{
 
     @Override
-    public void RegistrarProducto(Producto pd, Acceso asc) throws Exception {
+    public void RegistrarProducto(Producto pd, Rol asc) throws Exception {
         
         int CategoriaID;
         
@@ -56,7 +56,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     }
 
     @Override
-    public void ModificarProducto(Producto pd, Acceso asc) throws Exception {
+    public void ModificarProducto(Producto pd, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE PRODUCTOS SET NOMBRE = ? WHERE idPRODUCTOS = ?");
@@ -73,7 +73,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     }
 
     @Override
-    public void EliminarProducto(Producto pd, Acceso asc) throws Exception {
+    public void EliminarProducto(Producto pd, Rol asc) throws Exception {
         try{
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM PRODUCTOS WHERE idPRODUCTOS = ?");
@@ -89,7 +89,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     }
 
     @Override
-    public List<Producto> ListarProductos(Producto pd, Acceso asc) throws Exception {
+    public List<Producto> ListarProductos(Producto pd, Rol asc) throws Exception {
         List<Producto> productos = null;
         
         try{
