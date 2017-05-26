@@ -6,6 +6,7 @@ package ventanas;
  */
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import modelo_dao.Usuario;
 import mysql_conexion.Rol;
 import validaciones.Login;
@@ -17,6 +18,9 @@ public class VLogin extends javax.swing.JFrame {
      */
     public VLogin() {
         initComponents();
+        pnl_1.setBackground(new Color(0,0,0,195));
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -53,8 +57,10 @@ public class VLogin extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         Roles_Cbox = new javax.swing.JComboBox<>();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnl_1.setBackground(new java.awt.Color(0, 0, 0));
@@ -216,6 +222,9 @@ public class VLogin extends javax.swing.JFrame {
 
         getContentPane().add(pnl_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 450, 560));
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -277,13 +286,13 @@ public class VLogin extends javax.swing.JFrame {
             sw = lg.validaLogin(usr, rl);
 
             if(sw !=0){
-                System.out.println("Felicidades Entraste....");
+                JOptionPane.showMessageDialog(null, "Felicidades Entraste", " Inicio de sesion Exitoso",ICONIFIED);
             }else{
-                System.out.println("Que mal Usuario incorrecto...");
+                JOptionPane.showMessageDialog(null, "Que mal usuario incorrecto", " Inicio de sesion Invalido",NORMAL);
             }
 
         }else{
-            System.out.println("Seleccione un tipo de Usuario");
+            JOptionPane.showMessageDialog(null, "Seleccione un tipo de Usuario"," Tipo de Usuario Incorrecto",ICONIFIED);
         }
 
     }//GEN-LAST:event_btn_SignUpActionPerformed
@@ -360,6 +369,7 @@ public class VLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
