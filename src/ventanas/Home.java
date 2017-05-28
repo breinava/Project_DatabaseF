@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo_dao.Usuario;
 import mysql_conexion.Rol;
@@ -9,6 +10,7 @@ import mysql_conexion.Rol;
  *
  * @author breiner
  */
+
 public class Home extends javax.swing.JFrame {
 
     Usuario user = new Usuario();
@@ -364,14 +366,9 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ClienteActionPerformed
-        /*VCliente vc = null;
-        try {
-            vc = new VCliente();
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        VCliente vc = new VCliente();
         vc.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_menu_ClienteActionPerformed
 
     private void menu_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ProductoActionPerformed
