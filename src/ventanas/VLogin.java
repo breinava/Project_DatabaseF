@@ -49,14 +49,14 @@ public class VLogin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jbtn_CrearU = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jbtn_Min = new javax.swing.JLabel();
-        jbtn_Cerrar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Roles_Cbox = new javax.swing.JComboBox<>();
         jSeparator4 = new javax.swing.JSeparator();
+        btn_Minimizar = new javax.swing.JButton();
+        btn_Cerrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -173,27 +173,6 @@ public class VLogin extends javax.swing.JFrame {
         jLabel10.setText("Usuario");
         pnl_2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
-        jbtn_Min.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jbtn_Min.setForeground(new java.awt.Color(57, 113, 177));
-        jbtn_Min.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jbtn_Min.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minizar2.png"))); // NOI18N
-        jbtn_Min.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtn_MinMouseClicked(evt);
-            }
-        });
-        pnl_2.add(jbtn_Min, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 20, 30));
-
-        jbtn_Cerrar.setForeground(new java.awt.Color(57, 113, 177));
-        jbtn_Cerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jbtn_Cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close2.png"))); // NOI18N
-        jbtn_Cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtn_CerrarMouseClicked(evt);
-            }
-        });
-        pnl_2.add(jbtn_Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 20, 30));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/twitter1.png"))); // NOI18N
         pnl_2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, -1, -1));
 
@@ -219,6 +198,40 @@ public class VLogin extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         pnl_2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 280, 10));
+
+        btn_Minimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar1.png"))); // NOI18N
+        btn_Minimizar.setBorder(null);
+        btn_Minimizar.setBorderPainted(false);
+        btn_Minimizar.setContentAreaFilled(false);
+        btn_Minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Minimizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Minimizar.setIconTextGap(-3);
+        btn_Minimizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar2.png"))); // NOI18N
+        btn_Minimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar3.png"))); // NOI18N
+        btn_Minimizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MinimizarActionPerformed(evt);
+            }
+        });
+        pnl_2.add(btn_Minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, 30));
+
+        btn_Cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar1.png"))); // NOI18N
+        btn_Cerrar.setBorder(null);
+        btn_Cerrar.setBorderPainted(false);
+        btn_Cerrar.setContentAreaFilled(false);
+        btn_Cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Cerrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Cerrar.setIconTextGap(-3);
+        btn_Cerrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar2.png"))); // NOI18N
+        btn_Cerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar3.png"))); // NOI18N
+        btn_Cerrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarActionPerformed(evt);
+            }
+        });
+        pnl_2.add(btn_Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, 30));
 
         getContentPane().add(pnl_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 450, 560));
 
@@ -305,14 +318,6 @@ public class VLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_CrearUFocusLost
 
-    private void jbtn_MinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_MinMouseClicked
-        this.setExtendedState(1); // Minimizar
-    }//GEN-LAST:event_jbtn_MinMouseClicked
-
-    private void jbtn_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_CerrarMouseClicked
-        dispose(); // Cerrar
-    }//GEN-LAST:event_jbtn_CerrarMouseClicked
-
     private void Roles_CboxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Roles_CboxFocusGained
         jSeparator4.setBackground(new Color(57,113,177)); // Color de las casillas al precionar
         jLabel10.setForeground(new Color(57,113,177)); // Color de los titulos al precionar
@@ -320,6 +325,14 @@ public class VLogin extends javax.swing.JFrame {
         jLabel4.setForeground(new Color(51,52,54));
         jLabel13.setForeground(new Color(51,52,54));
     }//GEN-LAST:event_Roles_CboxFocusGained
+
+    private void btn_MinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MinimizarActionPerformed
+        this.setExtendedState(1);
+    }//GEN-LAST:event_btn_MinimizarActionPerformed
+
+    private void btn_CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btn_CerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,6 +371,8 @@ public class VLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Roles_Cbox;
+    private javax.swing.JButton btn_Cerrar;
+    private javax.swing.JButton btn_Minimizar;
     private javax.swing.JButton btn_SignUp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -375,9 +390,7 @@ public class VLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JLabel jbtn_Cerrar;
     private javax.swing.JLabel jbtn_CrearU;
-    private javax.swing.JLabel jbtn_Min;
     private javax.swing.JPanel pnl_1;
     private javax.swing.JPanel pnl_2;
     public static javax.swing.JTextField txt_EmailU;

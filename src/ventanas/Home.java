@@ -59,10 +59,10 @@ public class Home extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        Minimizar = new javax.swing.JLabel();
-        Cerrar = new javax.swing.JLabel();
         jUser = new javax.swing.JLabel();
         NameUser = new javax.swing.JLabel();
+        btn_Cerrar = new javax.swing.JButton();
+        btn_Minimizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jbtn_plus = new javax.swing.JLabel();
         jbtn_opcion = new javax.swing.JLabel();
@@ -197,25 +197,6 @@ public class Home extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Minimizar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        Minimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Minimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minizar2.png"))); // NOI18N
-        Minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MinimizarMouseClicked(evt);
-            }
-        });
-        jPanel4.add(Minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 20, 30));
-
-        Cerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close2.png"))); // NOI18N
-        Cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CerrarMouseClicked(evt);
-            }
-        });
-        jPanel4.add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 20, 30));
-
         jUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/user1.png"))); // NOI18N
         jUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -228,6 +209,40 @@ public class Home extends javax.swing.JFrame {
         NameUser.setFont(new java.awt.Font("DejaVu Sans Light", 0, 12)); // NOI18N
         NameUser.setForeground(new java.awt.Color(57, 113, 177));
         jPanel4.add(NameUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 70, 20));
+
+        btn_Cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar1.png"))); // NOI18N
+        btn_Cerrar.setBorder(null);
+        btn_Cerrar.setBorderPainted(false);
+        btn_Cerrar.setContentAreaFilled(false);
+        btn_Cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Cerrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Cerrar.setIconTextGap(-3);
+        btn_Cerrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar2.png"))); // NOI18N
+        btn_Cerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar3.png"))); // NOI18N
+        btn_Cerrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, -1, 30));
+
+        btn_Minimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar1.png"))); // NOI18N
+        btn_Minimizar.setBorder(null);
+        btn_Minimizar.setBorderPainted(false);
+        btn_Minimizar.setContentAreaFilled(false);
+        btn_Minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Minimizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Minimizar.setIconTextGap(-3);
+        btn_Minimizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar2.png"))); // NOI18N
+        btn_Minimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar3.png"))); // NOI18N
+        btn_Minimizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MinimizarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_Minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, -1, 30));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 860, 50));
 
@@ -257,16 +272,6 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void MinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizarMouseClicked
-
-        this.setExtendedState(1);
-    }//GEN-LAST:event_MinimizarMouseClicked
-
-    private void CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarMouseClicked
-
-        dispose();
-    }//GEN-LAST:event_CerrarMouseClicked
 
     private void jUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserMouseClicked
         // TODO add your handling code here:
@@ -339,6 +344,14 @@ public class Home extends javax.swing.JFrame {
         this.dispose();*/
     }//GEN-LAST:event_menu_CargoEMPActionPerformed
 
+    private void btn_CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btn_CerrarActionPerformed
+
+    private void btn_MinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MinimizarActionPerformed
+        this.setExtendedState(1);
+    }//GEN-LAST:event_btn_MinimizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -375,9 +388,9 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Cerrar;
-    private javax.swing.JLabel Minimizar;
     private javax.swing.JLabel NameUser;
+    private javax.swing.JButton btn_Cerrar;
+    private javax.swing.JButton btn_Minimizar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
