@@ -70,6 +70,7 @@ public class Home extends javax.swing.JFrame {
         btn_Venta = new javax.swing.JButton();
         btn_Compra = new javax.swing.JButton();
         btn_Reporte = new javax.swing.JButton();
+        btn_Consultas = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
         menu_Cliente.setText("Cliente");
@@ -133,7 +134,7 @@ public class Home extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("AquaBase", 1, 17)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("AquaBase", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(126, 87, 194));
         jLabel3.setText("Algunos de Nuestros Productos");
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -147,7 +148,7 @@ public class Home extends javax.swing.JFrame {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rating.png"))); // NOI18N
         jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 240, 30));
 
-        jLabel16.setFont(new java.awt.Font("Liberation Sans", 0, 17)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Ropa");
@@ -165,7 +166,7 @@ public class Home extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rating.png"))); // NOI18N
         jPanel10.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 240, 30));
 
-        jLabel10.setFont(new java.awt.Font("Liberation Sans", 0, 17)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Calzado");
@@ -183,7 +184,7 @@ public class Home extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rating.png"))); // NOI18N
         jPanel11.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 240, 30));
 
-        jLabel14.setFont(new java.awt.Font("Liberation Sans", 0, 17)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Accesorios");
@@ -355,7 +356,27 @@ public class Home extends javax.swing.JFrame {
                 btn_ReporteActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 70, 50));
+        jPanel1.add(btn_Reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 70, 50));
+
+        btn_Consultas.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        btn_Consultas.setForeground(new java.awt.Color(204, 204, 255));
+        btn_Consultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultas1.png"))); // NOI18N
+        btn_Consultas.setText("Consultas");
+        btn_Consultas.setBorder(null);
+        btn_Consultas.setBorderPainted(false);
+        btn_Consultas.setContentAreaFilled(false);
+        btn_Consultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Consultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Consultas.setIconTextGap(1);
+        btn_Consultas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultas2.png"))); // NOI18N
+        btn_Consultas.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultas3.png"))); // NOI18N
+        btn_Consultas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Consultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConsultasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Consultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 70, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 560));
 
@@ -455,6 +476,10 @@ public class Home extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_Cerrar_SesionActionPerformed
 
+    private void btn_ConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ConsultasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -495,6 +520,7 @@ public class Home extends javax.swing.JFrame {
     public static javax.swing.JLabel NameUser;
     private javax.swing.JButton btn_Cerrar;
     private javax.swing.JButton btn_Compra;
+    private javax.swing.JButton btn_Consultas;
     private javax.swing.JButton btn_Minimizar;
     private javax.swing.JButton btn_Registrar;
     private javax.swing.JButton btn_Reporte;
