@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hbm_Impl;
 
 import javax.swing.JOptionPane;
+import modelo_hbm.Clientes;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,33 +10,9 @@ import org.hibernate.Transaction;
  *
  * @author breiner
  */
-public class Operaciones {
 
-    public void insertar(Object obj){
-        
-        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
-        Session sess;
-        sess = sesion.openSession();
-        Transaction tx = sess.beginTransaction();
-        sess.save(obj);
-        tx.commit();
-        sess.close();
-        JOptionPane.showMessageDialog(null, "Insertado correctamente..");
-                
-    }
+public class Oper_Clientes extends OperacionesGeneral{
     
-    public void eliminar(Object obj){
-        
-        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
-        Session sess;
-        sess = sesion.openSession();
-        Transaction tx = sess.beginTransaction();
-        sess.delete(obj);
-        tx.commit();
-        sess.close();
-        JOptionPane.showMessageDialog(null, "Eliminado correctamente..");
-    }
-    /*
     public Clientes buscarCliente(Integer dni){
         
         Clientes clt;
@@ -66,5 +38,5 @@ public class Operaciones {
         tx.commit();
         sess.close();
         JOptionPane.showMessageDialog(null, "Actualizado correctamente..");
-    }*/    
+    }
 }

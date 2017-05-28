@@ -292,7 +292,6 @@ public class VLogin extends javax.swing.JFrame {
         Login lg = new Login();
         Usuario usr = new Usuario();
         Rol rl = new Rol();
-        Home ho = new Home();
         
         int sw = 0;
 
@@ -308,12 +307,14 @@ public class VLogin extends javax.swing.JFrame {
             usr.setPass(pass);
 
             sw = lg.validaLogin(usr, rl);
-
-            if(sw !=0){
+            
+            if(sw != 0){
+                
+                Home ho = new Home();
                 
                 String algo = usr.getUsuario();
                 NameUser.setText(algo);
-
+                
                 ho.setVisible(true);
                 this.dispose();
         

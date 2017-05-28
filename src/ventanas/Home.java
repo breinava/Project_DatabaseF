@@ -6,6 +6,9 @@
 package ventanas;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import modelo_dao.Usuario;
+import mysql_conexion.Rol;
 
 /**
  *
@@ -13,16 +16,21 @@ import java.awt.Color;
  */
 public class Home extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Home
-     */
+    //Usuario user = new Usuario();
+    //Rol rol = new Rol();
+    
     public Home() {
         initComponents();
         jPanel3.setBackground(new Color(102,102,102,195));
         setResizable(false);
         setLocationRelativeTo(null);
     }
-
+/*
+    public Home(Usuario user, Rol rol){
+        this.user = user;
+        this.rol = rol;
+    }
+    */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -428,7 +436,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_MinimizarActionPerformed
 
     private void btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarActionPerformed
-        plus_mas.show(btn_Registrar,WIDTH, WIDTH);
+        //if(r.getNombre() != "cajero"){
+            plus_mas.show(btn_Registrar,WIDTH, WIDTH);
+       // }else{
+       //     JOptionPane.showMessageDialog(null, "Usted No tiene Permisos", " Registro Denegado",NORMAL);
+        //}
     }//GEN-LAST:event_btn_RegistrarActionPerformed
 
     private void btn_VentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VentaActionPerformed
