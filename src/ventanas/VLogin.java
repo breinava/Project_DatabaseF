@@ -312,6 +312,8 @@ public class VLogin extends javax.swing.JFrame {
                 
                 Home ho = new Home();
                 
+                ho.setAcceso(usr, rl);
+                
                 String algo = usr.getUsuario();
                 NameUser.setText(algo);
                 
