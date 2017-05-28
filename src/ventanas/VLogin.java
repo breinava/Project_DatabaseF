@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import modelo_dao.Usuario;
 import mysql_conexion.Rol;
 import validaciones.Login;
+import static ventanas.Home.NameUser;
 
 public class VLogin extends javax.swing.JFrame {
 
@@ -47,7 +48,7 @@ public class VLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jbtn_CrearU = new javax.swing.JLabel();
+        jbtn_RegistrarU = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -157,17 +158,26 @@ public class VLogin extends javax.swing.JFrame {
         jLabel6.setText("If you are already a nember please");
         pnl_2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, -1, -1));
 
-        jbtn_CrearU.setForeground(new java.awt.Color(57, 113, 177));
-        jbtn_CrearU.setText("Signin");
-        jbtn_CrearU.addFocusListener(new java.awt.event.FocusAdapter() {
+        jbtn_RegistrarU.setForeground(new java.awt.Color(57, 113, 177));
+        jbtn_RegistrarU.setText("Sign In");
+        jbtn_RegistrarU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtn_RegistrarU.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jbtn_CrearUFocusGained(evt);
+                jbtn_RegistrarUFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jbtn_CrearUFocusLost(evt);
+                jbtn_RegistrarUFocusLost(evt);
             }
         });
-        pnl_2.add(jbtn_CrearU, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
+        jbtn_RegistrarU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jbtn_RegistrarUMousePressed(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtn_RegistrarUMouseEntered(evt);
+            }
+        });
+        pnl_2.add(jbtn_RegistrarU, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(57, 113, 177));
         jLabel10.setText("Usuario");
@@ -282,7 +292,8 @@ public class VLogin extends javax.swing.JFrame {
         Login lg = new Login();
         Usuario usr = new Usuario();
         Rol rl = new Rol();
-
+        Home ho = new Home();
+        
         int sw = 0;
 
         String rol = (String)Roles_Cbox.getSelectedItem();
@@ -299,7 +310,13 @@ public class VLogin extends javax.swing.JFrame {
             sw = lg.validaLogin(usr, rl);
 
             if(sw !=0){
-                JOptionPane.showMessageDialog(null, "Felicidades Entraste", " Inicio de sesion Exitoso",ICONIFIED);
+                
+                String algo = usr.getUsuario();
+                NameUser.setText(algo);
+
+                ho.setVisible(true);
+                this.dispose();
+        
             }else{
                 JOptionPane.showMessageDialog(null, "Que mal usuario incorrecto", " Inicio de sesion Invalido",NORMAL);
             }
@@ -310,13 +327,13 @@ public class VLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_SignUpActionPerformed
 
-    private void jbtn_CrearUFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbtn_CrearUFocusGained
+    private void jbtn_RegistrarUFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbtn_RegistrarUFocusGained
 
-    }//GEN-LAST:event_jbtn_CrearUFocusGained
+    }//GEN-LAST:event_jbtn_RegistrarUFocusGained
 
-    private void jbtn_CrearUFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbtn_CrearUFocusLost
+    private void jbtn_RegistrarUFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbtn_RegistrarUFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtn_CrearUFocusLost
+    }//GEN-LAST:event_jbtn_RegistrarUFocusLost
 
     private void Roles_CboxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Roles_CboxFocusGained
         jSeparator4.setBackground(new Color(57,113,177)); // Color de las casillas al precionar
@@ -333,6 +350,15 @@ public class VLogin extends javax.swing.JFrame {
     private void btn_CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarActionPerformed
         dispose();
     }//GEN-LAST:event_btn_CerrarActionPerformed
+
+    private void jbtn_RegistrarUMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_RegistrarUMouseEntered
+        String sub = "<html><u>Sign In</u></html>";
+        jbtn_RegistrarU.setText(sub);
+    }//GEN-LAST:event_jbtn_RegistrarUMouseEntered
+
+    private void jbtn_RegistrarUMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_RegistrarUMousePressed
+        jbtn_RegistrarU.setText("Sign In");
+    }//GEN-LAST:event_jbtn_RegistrarUMousePressed
 
     /**
      * @param args the command line arguments
@@ -390,7 +416,7 @@ public class VLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JLabel jbtn_CrearU;
+    private javax.swing.JLabel jbtn_RegistrarU;
     private javax.swing.JPanel pnl_1;
     private javax.swing.JPanel pnl_2;
     public static javax.swing.JTextField txt_EmailU;
