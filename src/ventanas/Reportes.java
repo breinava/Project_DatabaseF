@@ -74,7 +74,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel1.setText("Seleciona una Grafica");
 
         jComboGrafica.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jComboGrafica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Grafica", "Número de productos por categoria", "Ganancia por Categoria", "Grafica 3", "Grafica 4" }));
+        jComboGrafica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Grafica", "Número de productos por categoria", "Ganancia por Categoria", "Cantidad de prodctos pedidos", "Inversion" }));
         jComboGrafica.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboGraficaItemStateChanged(evt);

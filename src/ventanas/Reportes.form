@@ -95,8 +95,8 @@
             <StringItem index="0" value="Seleccione una Grafica"/>
             <StringItem index="1" value="N&#xfa;mero de productos por categoria"/>
             <StringItem index="2" value="Ganancia por Categoria"/>
-            <StringItem index="3" value="Grafica 3"/>
-            <StringItem index="4" value="Grafica 4"/>
+            <StringItem index="3" value="Cantidad de prodctos pedidos"/>
+            <StringItem index="4" value="Inversion"/>
           </StringArray>
         </Property>
       </Properties>
