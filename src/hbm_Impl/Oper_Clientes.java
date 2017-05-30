@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import modelo_hbm.Clientes;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -81,16 +82,18 @@ public class Oper_Clientes extends OperacionesGeneral{
     public List<Clientes> listarClientes(){
         
         List<Clientes> clients = null;
-        Clientes clt = new Clientes();
+        //Clientes clt = new Clientes();
         
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
-        Session sess;
-        sess = sesion.openSession();
-        Transaction tx = sess.beginTransaction();
+        Session sess = sesion.openSession();
         
-        clients = sess.createQuery("FROM CLIENTES").list();
+        sess.beginTransaction();
         
-        tx.commit();
+        //clients = new ArrayList();
+        Query hql = sess.createSQLQuery("FROM CLIENTES");
+        clients = hql.list();
+        
+        //tx.commit();
         sess.close();
         
         return clients;
