@@ -70,8 +70,10 @@ public class DAOPedidoImpl extends MySQL implements DAOPedido{
     }
 
     @Override
-    public List<Pedido> ListarPedidos(Pedido pe, Rol asc) throws Exception {
+    public List<Pedido> ListarPedidos(Rol asc) throws Exception {
         List<Pedido> pedidos = null;
+        Pedido pe = new Pedido(); 
+                
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM PEDIDOS;");

@@ -15,6 +15,6 @@ public interface DAOProveedor {
     public void RegistrarProveedor(Proveedor pr, Rol asc) throws Exception;
     public void ModificarProveedor(Proveedor pr, Rol asc) throws Exception;
     public void EliminarProveedor(Proveedor pr, Rol asc) throws Exception;
-    public List<Proveedor> ListarProveedores(Proveedor pr, Rol asc) throws Exception;
+    public List<Proveedor> ListarProveedores(Rol asc) throws Exception;
     
 }

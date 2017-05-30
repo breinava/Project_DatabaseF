@@ -67,8 +67,10 @@ public class DAOProveedorImpl extends MySQL implements DAOProveedor{
     }
 
     @Override
-    public List<Proveedor> ListarProveedores(Proveedor pr, Rol asc) throws Exception {
+    public List<Proveedor> ListarProveedores(Rol asc) throws Exception {
         List<Proveedor> proveedores = null;
+        Proveedor pr = new Proveedor();
+        
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM PROVEEDORES");

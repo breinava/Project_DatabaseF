@@ -14,5 +14,5 @@ public interface DAOModoPago {
     public void RegistarModoPago(ModoPago pago, Rol asc) throws Exception;
     public void ModificarModoPago(ModoPago pago, Rol asc) throws Exception;
     public void EliminarModoPago(ModoPago pago, Rol asc) throws Exception;
-    public List<ModoPago> ListarModoPagos(ModoPago pago, Rol asc) throws Exception;
+    public List<ModoPago> ListarModoPagos(Rol asc) throws Exception;
 }

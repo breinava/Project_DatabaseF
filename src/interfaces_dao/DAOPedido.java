@@ -14,5 +14,5 @@ public interface DAOPedido {
     public void RegistrarPedido(Pedido pe, Rol asc) throws Exception;
     public void ModificarPedido(Pedido pe, Rol asc) throws Exception;
     public void EliminarPedido(Pedido pe, Rol asc) throws Exception;
-    public List<Pedido> ListarPedidos(Pedido pe, Rol asc) throws Exception;
+    public List<Pedido> ListarPedidos(Rol asc) throws Exception;
 }

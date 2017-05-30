@@ -15,5 +15,5 @@ public interface DAOAlmacen {
     public void RegistrarAlmacen(Almacen alm, Rol asc)throws Exception;
     public void ModificarAlmacen(Almacen alm, Rol asc)throws Exception;
     public void EliminarAlmacen(Almacen alm, Rol asc)throws Exception;
-    public List<Almacen> ListarAlmacenes(Almacen alm, Rol asc)throws Exception;
+    public List<Almacen> ListarAlmacenes(Rol asc)throws Exception;
 }

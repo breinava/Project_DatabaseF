@@ -68,8 +68,9 @@ public class DAOAlmacenImpl extends MySQL implements DAOAlmacen{
     }
 
     @Override
-    public List<Almacen> ListarAlmacenes(Almacen alm, Rol asc) throws Exception {
+    public List<Almacen> ListarAlmacenes(Rol asc) throws Exception {
         List<Almacen> almacenes = null;
+        Almacen alm = new Almacen();
         
         try{
             this.MySQLCnx(asc);

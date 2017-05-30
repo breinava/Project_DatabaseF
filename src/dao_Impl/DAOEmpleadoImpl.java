@@ -74,8 +74,10 @@ public class DAOEmpleadoImpl extends MySQL implements DAOEmpleado {
     }
 
     @Override
-    public List<Empleado> ListarEmpleados(Empleado e, Rol asc) throws Exception {
+    public List<Empleado> ListarEmpleados(Rol asc) throws Exception {
         List<Empleado> empleados = null;
+        Empleado e = new Empleado();
+        
         try {
             this.MySQLCnx(asc);
             PreparedStatement st= this.Conexion.prepareStatement("SELECT * FROM EMPLEADOS");

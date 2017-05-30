@@ -72,8 +72,9 @@ public class DAOFacturaImpl extends MySQL implements DAOFactura{
     }
 
     @Override
-    public List<Factura> ListarFacturas(Factura fac, Rol asc) throws Exception {
+    public List<Factura> ListarFacturas(Rol asc) throws Exception {
         List<Factura> facturas = null;
+        Factura fac = new Factura();
         
         try {
             this.MySQLCnx(asc);

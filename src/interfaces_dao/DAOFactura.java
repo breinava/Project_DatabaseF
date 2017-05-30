@@ -14,6 +14,6 @@ public interface DAOFactura {
     public void RegistrarFactura(Factura fac, Rol asc) throws Exception;
     public void ModificarFactura(Factura fac, Rol asc) throws Exception;
     public void EliminarFactura(Factura fac, Rol asc) throws Exception;
-    public List<Factura> ListarFacturas(Factura fac, Rol asc) throws Exception;
+    public List<Factura> ListarFacturas(Rol asc) throws Exception;
             
 }

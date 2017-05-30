@@ -66,9 +66,10 @@ public class DAOModoPagoImpl extends MySQL implements DAOModoPago {
     }
 
     @Override
-    public List<ModoPago> ListarModoPagos(ModoPago pago, Rol asc) throws Exception {
+    public List<ModoPago> ListarModoPagos(Rol asc) throws Exception {
         List<ModoPago> modosPagos=null;
-           
+        ModoPago pago = new ModoPago();   
+        
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM MODO_PAGO");

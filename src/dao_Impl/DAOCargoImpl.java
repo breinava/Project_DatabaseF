@@ -65,9 +65,10 @@ public class DAOCargoImpl extends MySQL implements DAOCargo {
     }
 
     @Override
-    public List<Cargo> ListarCargos(Cargo ca, Rol asc) throws Exception {
+    public List<Cargo> ListarCargos(Rol asc) throws Exception {
         List<Cargo> cargos = null;
-      
+        Cargo ca = new Cargo(); 
+        
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM CARGOS;");

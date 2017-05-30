@@ -73,8 +73,9 @@ public class DAOClienteImpl extends MySQL implements DAOCliente{
     }
 
     @Override
-    public List<Cliente> ListarClientes(Cliente cl, Rol asc) throws Exception {
+    public List<Cliente> ListarClientes(Rol asc) throws Exception {
         List<Cliente> clientes = null;
+        Cliente cl = new Cliente();
         
         try{
             this.MySQLCnx(asc);

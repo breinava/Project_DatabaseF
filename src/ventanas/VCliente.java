@@ -2,6 +2,8 @@ package ventanas;
 
 import hbm_Impl.Oper_Clientes;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo_hbm.Clientes;
 
 /**
@@ -344,7 +346,11 @@ public class VCliente extends javax.swing.JFrame {
         String email = txt_Email.getText();
         
         Clientes cl = new Clientes(dni,nombre,apellidos,telefono,email);
-        operC.insertar(cl);
+        try {
+            operC.insertar(cl);
+        } catch (Exception ex) {
+            Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btn_RegistrarCActionPerformed
 

@@ -71,6 +71,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     public List<Usuario> ListarUsuarios(Rol asc) throws Exception {
         List<Usuario> usuarios = null;
         Usuario u = new Usuario();
+        
         try {
             this.MySQLCnx(asc);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS");
@@ -85,7 +86,6 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
                 u.setPass(rs.getString(4));
                 usuarios.add(u);
             }
-            
             
             rs.close();
             st.close();

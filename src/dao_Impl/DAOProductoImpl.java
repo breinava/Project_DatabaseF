@@ -89,8 +89,9 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     }
 
     @Override
-    public List<Producto> ListarProductos(Producto pd, Rol asc) throws Exception {
+    public List<Producto> ListarProductos(Rol asc) throws Exception {
         List<Producto> productos = null;
+        Producto pd = new Producto();
         
         try{
             this.MySQLCnx(asc);
