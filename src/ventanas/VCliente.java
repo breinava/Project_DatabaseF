@@ -2,6 +2,8 @@ package ventanas;
 
 import hbm_Impl.Oper_Clientes;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo_hbm.Clientes;
@@ -13,7 +15,9 @@ import modelo_hbm.Clientes;
 
 public class VCliente extends javax.swing.JFrame {
     
+    Clientes cl = new Clientes();
     Oper_Clientes operC;
+    List<Clientes> clts = new ArrayList();
     
     public VCliente() {
         initComponents();
@@ -21,6 +25,9 @@ public class VCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         operC = new Oper_Clientes();
+        clts = operC.listarClientes();
+        operC.cargaListClientes(clts);
+        operC.cargaBoxClientes();
     }
 
     
@@ -212,6 +219,8 @@ public class VCliente extends javax.swing.JFrame {
         pnl_MostrarCliente.add(txt_BuscarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 240, 20));
 
         jbtn_BuscarC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jbtn_BuscarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        jbtn_BuscarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtn_BuscarC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbtn_BuscarCMouseClicked(evt);
@@ -345,7 +354,12 @@ public class VCliente extends javax.swing.JFrame {
         long telefono = Integer.parseInt(txt_TelefonoC.getText());
         String email = txt_Email.getText();
         
-        Clientes cl = new Clientes(dni,nombre,apellidos,telefono,email);
+        cl.setDni(dni); 
+        cl.setNombre(nombre);
+        cl.setApellidos(apellidos);
+        cl.setTelefono(telefono);
+        cl.setEmail(email);
+        
         try {
             operC.insertar(cl);
         } catch (Exception ex) {
@@ -355,13 +369,9 @@ public class VCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_RegistrarCActionPerformed
 
     private void btn_ActualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarCActionPerformed
-        
-        /*try {
-            cl.ShowDataCliente();
-        } catch (SQLException ex) {
-            Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
 
+        clts = operC.listarClientes();
+        operC.cargaListClientes(clts);
     }//GEN-LAST:event_btn_ActualizarCActionPerformed
 
     private void Box_BuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box_BuscarCActionPerformed
@@ -369,37 +379,38 @@ public class VCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_Box_BuscarCActionPerformed
 
     private void jbtn_BuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_BuscarCMouseClicked
-        /*String buscarPor = (String)Box_BuscarC.getSelectedItem();
-        String dato = txt_BuscarC.getText();
-        String datL = "'"+dato+"'";
-
-        System.out.println(datL);
-
-        if(buscarPor.equals("NOMBRE") || buscarPor.equals("APELLIDOS") || buscarPor.equals("EMAIL")){
-            try {
-                cl.SearchDataCliente(buscarPor,datL);
-                cl.ShowDataCliente(buscarPor,datL);
-            } catch (SQLException ex) {
-                Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
+        String dato1 = "";
+        long dato2 = 0;
+        
+        String buscarPor = (String)Box_BuscarC.getSelectedItem();
+        
+        if(buscarPor.equals("nombre") || buscarPor.equals("apellidos") || buscarPor.equals("email")){
+            
+            dato1 = txt_BuscarC.getText();
+            clts = operC.listarClientes(buscarPor,dato1);
+            operC.cargaListClientes(clts);
+            
         }else{
-            try {
-                cl.SearchDataCliente(buscarPor,dato);
-                cl.ShowDataCliente(buscarPor,dato);
-            } catch (SQLException ex) {
-                Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }*/
+            
+            dato2 = Integer.parseInt(txt_BuscarC.getText());
+            clts = operC.listarClientes(buscarPor,dato2);
+            operC.cargaListClientes(clts);
+            
+        }
     }//GEN-LAST:event_jbtn_BuscarCMouseClicked
 
     private void btn_ElimCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ElimCActionPerformed
-        /*String dni = String.valueOf((String)TablaCliente.getValueAt(TablaCliente.getSelectedRow(), 0)); //Obtener dato del jTable
-
+        
+        long dni = (long) TablaCliente.getValueAt(TablaCliente.getSelectedRow(),0);
+        
+        //System.out.println(dni);
         try {
-            cl.DeleteDataCliente(dni);
-        } catch (SQLException ex) {
+            cl = operC.buscarCliente(dni);
+            operC.eliminar(cl);
+        } catch (Exception ex) {
             Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
 
     }//GEN-LAST:event_btn_ElimCActionPerformed
 

@@ -8,8 +8,10 @@ public class Producto {
     private double precio1;
     private double precio2;
     private int idCategoria;
+    private int idMarca;
     private String name_categoria;
-
+    private String name_marca;
+    
     public int getId() {
         return id;
     }
@@ -56,6 +58,22 @@ public class Producto {
 
     public void setName_categoria(String name_categoria) {
         this.name_categoria = name_categoria;
+    }
+
+    public int getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }
+
+    public String getName_marca() {
+        return name_marca;
+    }
+
+    public void setName_marca(String name_marca) {
+        this.name_marca = name_marca;
     }
     
     

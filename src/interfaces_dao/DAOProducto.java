@@ -15,6 +15,6 @@ public interface DAOProducto {
     public void RegistrarProducto(Producto pd, Rol asc) throws Exception;
     public void ModificarProducto(Producto pd, Rol asc) throws Exception;
     public void EliminarProducto(Producto pd, Rol asc) throws Exception;
+    public void CargaListProductos(List<Producto> pd) throws Exception;
     public List<Producto> ListarProductos(Rol asc) throws Exception;
-    
 }

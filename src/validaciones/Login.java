@@ -18,14 +18,7 @@ public class Login extends MySQL{
     public int validaLogin(Usuario u, Rol r){
         
         int sw = 0;
-         if(r.getNombre() == "root"){
-            r.setClave("Soy Root NV.1");
-        }else if(r.getNombre() == "admin"){
-            r.setClave("Soy Admin NV.2");
-        }else if(r.getNombre() == "cajero"){
-            r.setClave("Soy Cajero NV.3");
-        }
-        
+
         try {
             this.MySQLCnx(r);
             PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM VIEW_USER_ROL WHERE USUARIO =? AND EMAIL =? AND CLAVE_USER =? AND NOMBRE =? AND CLAVE_ROL =?;");

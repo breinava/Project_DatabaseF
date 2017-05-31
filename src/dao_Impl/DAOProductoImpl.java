@@ -5,9 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import modelo_dao.Producto;
+import modelo_hbm.Clientes;
 import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
+import static ventanas.VCliente.TablaCliente;
+import static ventanas.VProductos.TablaProducto;
 
 /**
  *
@@ -20,7 +24,8 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
     @Override
     public void RegistrarProducto(Producto pd, Rol asc) throws Exception {
         
-        int CategoriaID;
+        int CategoriaID = 0;
+        int MarcaID = 0;
         
         try{
             this.MySQLCnx(asc);
@@ -29,7 +34,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
            
             ResultSet rs = st.executeQuery();
             rs.next();
-            CategoriaID =rs.getInt("idCategorias");
+            CategoriaID =rs.getInt("idCATEGORIAS");
             
         }catch(Exception e){
             throw e;
@@ -40,11 +45,28 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
         
         try{
             this.MySQLCnx(asc);
-            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO PRODUCTOS(NOMBRE,PRECIO_COMPRA,PRECIO_VENTA,idCATEGORIAS) VALUES(?,?,?,?)");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM MARCAS WHERE NOMBRE = ?");
+            st.setString(1, pd.getName_categoria());
+           
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            MarcaID =rs.getInt("idMARCAS");
+            
+        }catch(Exception e){
+            throw e;
+        
+        }finally{
+            this.CloseCnx();
+        }
+        
+        try{
+            this.MySQLCnx(asc);
+            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO PRODUCTOS(NOMBRE,PRECIO_COMPRA,PRECIO_VENTA,idCATEGORIAS,idMARCAS) VALUES(?,?,?,?,?)");
             st.setString(1, pd.getNombre());
             st.setDouble(2, pd.getPrecio1());
             st.setDouble(3, pd.getPrecio2());
             st.setInt(4, CategoriaID);
+            st.setInt(5, MarcaID);
             st.executeUpdate();
             
         }catch(Exception e){
@@ -95,7 +117,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
         
         try{
             this.MySQLCnx(asc);
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM CATEGORIAS");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM PRODUCTOS");
             
             productos = new ArrayList();
             ResultSet rs = st.executeQuery();
@@ -106,6 +128,7 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
                 pd.setPrecio1(rs.getDouble("PRECIO_COMPRA"));
                 pd.setPrecio2(rs.getDouble("PRECIO_VENTA"));
                 pd.setIdCategoria(rs.getInt("idCATEGORIAS"));
+                pd.setIdMarca(rs.getInt("idMARCAS"));
                 productos.add(pd);
             }
             rs.close();
@@ -119,6 +142,28 @@ public class DAOProductoImpl extends MySQL implements DAOProducto{
         }
         
         return productos;
+    }
+    
+    @Override
+    public void CargaListProductos(List<Producto> pd) throws Exception {
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        String[] ColumName = {"NOMBRE","PRECIO COMPRA","PRECIO VENTA","CATEGORIA","MARCA"};
+        modelo.setColumnIdentifiers(ColumName);
+        
+        Object[] fila = new Object[modelo.getColumnCount()];
+        
+        for (int i = 0; i< pd.size(); i++){
+            fila[0] = pd.get(i).getNombre();
+            fila[1] = pd.get(i).getPrecio1();
+            fila[2] = pd.get(i).getPrecio2();
+            fila[3] = pd.get(i).getIdCategoria();
+            fila[4] = pd.get(i).getIdMarca();
+            modelo.addRow(fila);
+        }
+        
+        TablaProducto.setModel(modelo);
     }
     
 }

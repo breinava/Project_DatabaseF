@@ -22,8 +22,9 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     
     @Override
     public void RegistrarUsuario(Usuario u, Rol asc) throws Exception {
+        Rol rl = new Rol("admin","Soy Admin NV.2");
         try {
-            this.MySQLCnx(asc);
+            this.MySQLCnx(rl);
             PreparedStatement st = this.Conexion.prepareStatement("CALL Registra_Usuarios(?,?,?);");
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());
@@ -38,8 +39,9 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
 
     @Override
     public void ModificarUsuario(Usuario u, Rol asc) throws Exception {
+        Rol rl = new Rol("admin","Soy Admin NV.2");
         try {
-            this.MySQLCnx(asc);
+            this.MySQLCnx(rl);
             PreparedStatement st = this.Conexion.prepareStatement("UPDATE USUARIOS SET USUARIO =?, EMAIL =?, PASS=? WHERE idUSERS=?;");
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());

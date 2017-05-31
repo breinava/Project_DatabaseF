@@ -18,7 +18,7 @@ public class Menu_Prueba_hbm {
         //Clientes cl = new Clientes(1234567893,"Algo","Prueba Prueba",123123,"pruebaAlgo@nose.com");
         //Clientes cl = new Clientes();
         
-        List<Clientes> clts = opc.listarClientes();
+        List<Clientes> clts = opc.listarClientes("dni",112233);
         
         for(int i=0; i < clts.size();i++){
             Clientes cl = (Clientes)clts.get(i);

@@ -2,6 +2,8 @@ package ventanas;
 
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo_dao.Usuario;
 import mysql_conexion.Rol;
@@ -23,7 +25,7 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public void setAcceso(Usuario user, Rol rol){
+    public void setAccesoH(Usuario user, Rol rol){
         this.user = user;
         this.rol = rol;
     }
@@ -393,14 +395,18 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_ClienteActionPerformed
 
     private void menu_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ProductoActionPerformed
-        /*VProducto vp = null;
+        
+        VProductos vp = null;
+        
         try {
-            vp = new VProducto();
-        } catch (SQLException ex) {
+            vp = new VProductos();
+            vp.setAccesoP(user, rol);
+        } catch (Exception ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
         vp.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_menu_ProductoActionPerformed
 
     private void menu_CategoriaPDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_CategoriaPDActionPerformed
@@ -447,7 +453,6 @@ public class Home extends javax.swing.JFrame {
     private void btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarActionPerformed
         if(rol.getNombre() != "cajero"){
             plus_mas.show(btn_Registrar,WIDTH, WIDTH);
-            
         }else{
             JOptionPane.showMessageDialog(null, "Usted No tiene Permisos", " Registro Denegado",NORMAL);
         }
@@ -462,7 +467,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CompraActionPerformed
 
     private void btn_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteActionPerformed
-        // TODO add your handling code here:
+        Reportes rp = new Reportes();
+        rp.setVisible(true);
     }//GEN-LAST:event_btn_ReporteActionPerformed
 
     private void btn_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UserActionPerformed

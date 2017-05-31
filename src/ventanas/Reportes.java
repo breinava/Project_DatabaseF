@@ -37,9 +37,11 @@ public class Reportes extends javax.swing.JFrame {
      */
     public Reportes() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
-    public static Rol r = new Rol("root", "olivo-320");
+    public static Rol r = new Rol("root","Soy Root NV.1");
 
     /**
      * This method is called from within the constructor to initialize the form.
