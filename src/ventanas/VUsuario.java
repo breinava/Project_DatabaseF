@@ -5,6 +5,8 @@
  */
 package ventanas;
 
+import Correo.ControladorCorreo;
+import Correo.Correo;
 import dao_Impl.DAOUsuarioImpl;
 import dao_Impl.DAOUsuario_RolImpl;
 import interfaces_dao.DAOUsuario;
@@ -18,6 +20,7 @@ import mysql_conexion.CargaRol;
 import mysql_conexion.Rol;
 import validaciones.Login;
 import validaciones.RegistroUser;
+import static ventanas.Main_Prueba_dao.c;
 
 /**
  *
@@ -25,9 +28,8 @@ import validaciones.RegistroUser;
  */
 public class VUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VUsuario
-     */
+    Correo c = new Correo();
+    
     public VUsuario() {
         initComponents();
         pnl_1.setBackground(new Color(0,0,0,195));
@@ -202,7 +204,7 @@ public class VUsuario extends javax.swing.JFrame {
         pnl_1.setBackground(new java.awt.Color(0, 0, 0));
         pnl_1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Indie Flower", 3, 70)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("AngsanaUPC", 3, 90)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(57, 113, 177));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro");
@@ -290,6 +292,25 @@ public class VUsuario extends javax.swing.JFrame {
                 try { 
                     user.RegistrarUsuario(usr, rl);
                     usrl.RegistrarUsuarioR(usr, rl);
+                    
+                    
+                    c.setContraseña("ybrsyumnqftsodse");
+                    c.setUsuarioCorreo("noj2304@gmail.com");
+                    c.setAsunto("Bienvenido a nuestra Empresa");
+                    c.setDestino(usr.getEmail());
+                    c.setMensaje("Cordial saludo\nEstamos agradecidos por tenerlo en nuestra empresa.\n"
+                            + "Le recordamos sus datos:\n"
+                            + "Usuario: " +usr.getUsuario()+"\n"
+                                    + "Email: "+ usr.getEmail()+"\n"+
+                            "Contraseña: "+usr.getPass());
+                    c.setNombreArchivo("bienvenido.jpg");
+                    c.setRutaArchivo("bienvenido.jpg");
+
+                    ControladorCorreo controlador = new ControladorCorreo();
+
+                    controlador.enviarCorreo(c);
+                    
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(VUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }

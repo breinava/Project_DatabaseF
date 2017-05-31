@@ -15,7 +15,7 @@ public class MySQL {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             
-            String servidor = "jdbc:mysql://localhost:3306/Project_Database";
+            String servidor = "jdbc:mysql://localhost:3306/proyecto_data_base2";
             //String user = "cajero";
             //String pass = "Soy Cajero 1.0"; 
             
