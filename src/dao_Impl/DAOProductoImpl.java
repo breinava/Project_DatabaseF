@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo_dao.Producto;
-import modelo_hbm.Clientes;
 import mysql_conexion.Rol;
 import mysql_conexion.MySQL;
 import static ventanas.VCliente.TablaCliente;

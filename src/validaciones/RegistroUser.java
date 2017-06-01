@@ -19,7 +19,7 @@ public class RegistroUser extends MySQL{
         
         try {
             this.MySQLCnx(r);
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS WHERE USUARIO =?;");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM usuarios WHERE USUARIO =?;");
             st.setString(1, u.getUsuario());
             
             ResultSet rs = st.executeQuery();
@@ -42,7 +42,7 @@ public class RegistroUser extends MySQL{
 
         try {
             this.MySQLCnx(r);
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS WHERE EMAIL =?;");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM usuarios WHERE EMAIL =?;");
             st.setString(1, u.getEmail());
             
             ResultSet rs = st.executeQuery();

@@ -1,5 +1,5 @@
 package modelo_hbm;
-// Generated 18-may-2017 15:31:17 by Hibernate Tools 4.3.1
+// Generated 01-jun-2017 11:44:50 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,6 +17,7 @@ public class Productos  implements java.io.Serializable {
      private String nombre;
      private double precioCompra;
      private double precioVenta;
+     private Integer cantidadStock;
      private Set detalleFacturases = new HashSet(0);
      private Set detallePedidoses = new HashSet(0);
 
@@ -31,14 +32,13 @@ public class Productos  implements java.io.Serializable {
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
     }
-    public Productos(Categorias categorias, Marcas marcas, String nombre, double precioCompra, double precioVenta, Set detalleFacturases, Set detallePedidoses) {
+    public Productos(Categorias categorias, Marcas marcas, String nombre, double precioCompra, double precioVenta, Integer cantidadStock) {
        this.categorias = categorias;
        this.marcas = marcas;
        this.nombre = nombre;
        this.precioCompra = precioCompra;
        this.precioVenta = precioVenta;
-       this.detalleFacturases = detalleFacturases;
-       this.detallePedidoses = detallePedidoses;
+       this.cantidadStock = cantidadStock;
     }
    
     public Integer getIdProductos() {
@@ -82,6 +82,13 @@ public class Productos  implements java.io.Serializable {
     
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+    public Integer getCantidadStock() {
+        return this.cantidadStock;
+    }
+    
+    public void setCantidadStock(Integer cantidadStock) {
+        this.cantidadStock = cantidadStock;
     }
     public Set getDetalleFacturases() {
         return this.detalleFacturases;

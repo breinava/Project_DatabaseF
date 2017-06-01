@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-may-2017 15:31:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 01-jun-2017 11:44:50 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelo_hbm.Cargos" table="CARGOS" catalog="Project_Database" optimistic-lock="version">
+    <class name="modelo_hbm.Cargos" table="cargos" catalog="proyecto_data_base2" optimistic-lock="version">
         <id name="idCargo" type="java.lang.Integer">
             <column name="idCARGO" />
             <generator class="identity" />
@@ -11,7 +11,7 @@
         <property name="nombre" type="string">
             <column name="NOMBRE" length="45" not-null="true" />
         </property>
-        <set name="empleadoses" table="EMPLEADOS" inverse="true" lazy="true" fetch="select">
+        <set name="empleadoses" table="empleados" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idCARGO" not-null="true" />
             </key>

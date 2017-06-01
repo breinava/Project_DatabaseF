@@ -4,26 +4,26 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Project_Database?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/proyecto_data_base2?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">Soy Root NV.1</property>
     <mapping resource="modelo_hbm/Permisos.hbm.xml"/>
-    <mapping resource="modelo_hbm/UsuariosRoles.hbm.xml"/>
-    <mapping resource="modelo_hbm/Empleados.hbm.xml"/>
-    <mapping resource="modelo_hbm/DetallePedidos.hbm.xml"/>
     <mapping resource="modelo_hbm/Almacen.hbm.xml"/>
-    <mapping resource="modelo_hbm/Clientes.hbm.xml"/>
-    <mapping resource="modelo_hbm/Acciones.hbm.xml"/>
     <mapping resource="modelo_hbm/ModoPago.hbm.xml"/>
-    <mapping resource="modelo_hbm/Roles.hbm.xml"/>
+    <mapping resource="modelo_hbm/Acciones.hbm.xml"/>
     <mapping resource="modelo_hbm/Marcas.hbm.xml"/>
+    <mapping resource="modelo_hbm/Roles.hbm.xml"/>
     <mapping resource="modelo_hbm/Categorias.hbm.xml"/>
-    <mapping resource="modelo_hbm/Facturas.hbm.xml"/>
+    <mapping resource="modelo_hbm/Clientes.hbm.xml"/>
     <mapping resource="modelo_hbm/Usuarios.hbm.xml"/>
     <mapping resource="modelo_hbm/Cargos.hbm.xml"/>
+    <mapping resource="modelo_hbm/Facturas.hbm.xml"/>
     <mapping resource="modelo_hbm/Proveedores.hbm.xml"/>
-    <mapping resource="modelo_hbm/Pedidos.hbm.xml"/>
-    <mapping resource="modelo_hbm/Productos.hbm.xml"/>
+    <mapping resource="modelo_hbm/Empleados.hbm.xml"/>
     <mapping resource="modelo_hbm/DetalleFacturas.hbm.xml"/>
+    <mapping resource="modelo_hbm/Productos.hbm.xml"/>
+    <mapping resource="modelo_hbm/Pedidos.hbm.xml"/>
+    <mapping resource="modelo_hbm/DetallePedidos.hbm.xml"/>
+    <mapping resource="modelo_hbm/UsuariosRoles.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

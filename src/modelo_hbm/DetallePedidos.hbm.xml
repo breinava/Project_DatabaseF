@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-may-2017 15:31:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 01-jun-2017 11:44:50 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelo_hbm.DetallePedidos" table="DETALLE_PEDIDOS" catalog="Project_Database" optimistic-lock="version">
+    <class name="modelo_hbm.DetallePedidos" table="detalle_pedidos" catalog="proyecto_data_base2" optimistic-lock="version">
         <composite-id name="id" class="modelo_hbm.DetallePedidosId">
             <key-property name="idDetallePedido" type="int">
                 <column name="idDETALLE_PEDIDO" />

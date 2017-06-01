@@ -1,5 +1,5 @@
 package modelo_hbm;
-// Generated 18-may-2017 15:31:17 by Hibernate Tools 4.3.1
+// Generated 01-jun-2017 11:44:50 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,7 +15,6 @@ public class Usuarios  implements java.io.Serializable {
      private String usuario;
      private String email;
      private String pass;
-     private boolean estado;
      private Set empleadoses = new HashSet(0);
      private Set usuariosRoleses = new HashSet(0);
 
@@ -23,17 +22,15 @@ public class Usuarios  implements java.io.Serializable {
     }
 
 	
-    public Usuarios(String usuario, String email, String pass, boolean estado) {
+    public Usuarios(String usuario, String email, String pass) {
         this.usuario = usuario;
         this.email = email;
         this.pass = pass;
-        this.estado = estado;
     }
-    public Usuarios(String usuario, String email, String pass, boolean estado, Set empleadoses, Set usuariosRoleses) {
+    public Usuarios(String usuario, String email, String pass, Set empleadoses, Set usuariosRoleses) {
        this.usuario = usuario;
        this.email = email;
        this.pass = pass;
-       this.estado = estado;
        this.empleadoses = empleadoses;
        this.usuariosRoleses = usuariosRoleses;
     }
@@ -65,13 +62,6 @@ public class Usuarios  implements java.io.Serializable {
     
     public void setPass(String pass) {
         this.pass = pass;
-    }
-    public boolean isEstado() {
-        return this.estado;
-    }
-    
-    public void setEstado(boolean estado) {
-        this.estado = estado;
     }
     public Set getEmpleadoses() {
         return this.empleadoses;

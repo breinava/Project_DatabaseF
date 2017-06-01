@@ -1,12 +1,10 @@
 package ventanas;
 
-import hbm_Impl.Oper_Clientes;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo_hbm.Clientes;
 
 /**
  *
@@ -14,20 +12,21 @@ import modelo_hbm.Clientes;
  */
 
 public class VCliente extends javax.swing.JFrame {
-    
+    /*
     Clientes cl = new Clientes();
     Oper_Clientes operC;
     List<Clientes> clts = new ArrayList();
-    
+    */
     public VCliente() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        
+        /*
         operC = new Oper_Clientes();
         clts = operC.listarClientes();
         operC.cargaListClientes(clts);
         operC.cargaBoxClientes();
+        */
     }
 
     
@@ -347,7 +346,7 @@ public class VCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_EmailFocusGained
 
     private void btn_RegistrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarCActionPerformed
-        
+       /* 
         long dni = Integer.parseInt(txt_DNIC.getText());
         String nombre = txt_NombreC.getText();
         String apellidos = txt_ApellidosC.getText();
@@ -365,13 +364,13 @@ public class VCliente extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        */
     }//GEN-LAST:event_btn_RegistrarCActionPerformed
 
     private void btn_ActualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarCActionPerformed
 
-        clts = operC.listarClientes();
-        operC.cargaListClientes(clts);
+       /* clts = operC.listarClientes();
+        operC.cargaListClientes(clts);*/
     }//GEN-LAST:event_btn_ActualizarCActionPerformed
 
     private void Box_BuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box_BuscarCActionPerformed
@@ -379,7 +378,7 @@ public class VCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_Box_BuscarCActionPerformed
 
     private void jbtn_BuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_BuscarCMouseClicked
-        
+        /*
         String dato1 = "";
         long dato2 = 0;
         
@@ -397,11 +396,11 @@ public class VCliente extends javax.swing.JFrame {
             clts = operC.listarClientes(buscarPor,dato2);
             operC.cargaListClientes(clts);
             
-        }
+        }*/
     }//GEN-LAST:event_jbtn_BuscarCMouseClicked
 
     private void btn_ElimCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ElimCActionPerformed
-        
+        /*
         long dni = (long) TablaCliente.getValueAt(TablaCliente.getSelectedRow(),0);
         
         //System.out.println(dni);
@@ -411,7 +410,7 @@ public class VCliente extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        */
     }//GEN-LAST:event_btn_ElimCActionPerformed
 
     private void btn_MinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MinimizarActionPerformed

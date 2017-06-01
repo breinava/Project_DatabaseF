@@ -1,14 +1,19 @@
 package ventanas;
 
-import dao_Impl.DAOProductoImpl;
-import interfaces_dao.DAOProducto;
+import hbm_Impl.Oper_CategoriasP;
+import hbm_Impl.Oper_Generales;
+import hbm_Impl.Oper_Marcas;
+import hbm_Impl.Oper_Productos;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo_dao.Producto;
+import javax.swing.JOptionPane;
 import modelo_dao.Usuario;
+import modelo_hbm.Categorias;
+import modelo_hbm.Marcas;
+import modelo_hbm.Productos;
 import mysql_conexion.Rol;
 
 /**
@@ -20,14 +25,29 @@ public class VProductos extends javax.swing.JFrame {
     Usuario user = new Usuario();
     Rol rol = new Rol();
     
-    DAOProducto pdimp = new DAOProductoImpl();
-    Producto pd = new Producto();
-    List<Producto> listpd = new ArrayList();
+    Oper_CategoriasP opc = new Oper_CategoriasP();
+    Oper_Marcas opm = new Oper_Marcas();
+    Oper_Productos opd = new Oper_Productos();
+    
+    List<Productos> prodts = new ArrayList();
+    List<Marcas> marcs = new ArrayList();
+    List<Categorias> cateP = new ArrayList();
     
     public VProductos() throws Exception {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        prodts = opd.listarProductos(); //Carga Lista de productos
+        opd.cargaListProductos(prodts);
+        
+        opd.cargaBoxBuscarP(); // Carga Bosx Buscar Productos
+        
+        marcs = opm.listarMarcas(); // Carga Box de Marcas
+        opd.cargaBoxMarcas(marcs);
+        
+        cateP = opc.listarCategoriasP(); // Carga Box  Categorias
+        opd.cargaBoxCategorias(cateP); 
         
     }
 
@@ -57,6 +77,9 @@ public class VProductos extends javax.swing.JFrame {
         btn_RegistrarP = new javax.swing.JButton();
         Box_MarcaP = new javax.swing.JComboBox<>();
         Box_CategoriaP = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        txt_Stock = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         btn_Minimizar = new javax.swing.JButton();
@@ -94,11 +117,11 @@ public class VProductos extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(52, 52, 54));
         jLabel5.setText("Marca");
-        pnl_RegistroCliente.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        pnl_RegistroCliente.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(52, 52, 54));
         jLabel6.setText("Categoria");
-        pnl_RegistroCliente.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        pnl_RegistroCliente.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
         pnl_RegistroCliente.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 210, 10));
 
         txt_NombreP.setBackground(new java.awt.Color(32, 33, 35));
@@ -137,8 +160,8 @@ public class VProductos extends javax.swing.JFrame {
             }
         });
         pnl_RegistroCliente.add(txt_PrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 180, 30));
-        pnl_RegistroCliente.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 210, 10));
-        pnl_RegistroCliente.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 210, 10));
+        pnl_RegistroCliente.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 210, 10));
+        pnl_RegistroCliente.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 210, 10));
 
         btn_RegistrarP.setBackground(new java.awt.Color(126, 87, 194));
         btn_RegistrarP.setFont(new java.awt.Font("NanumMyeongjo", 1, 12)); // NOI18N
@@ -149,7 +172,7 @@ public class VProductos extends javax.swing.JFrame {
                 btn_RegistrarPActionPerformed(evt);
             }
         });
-        pnl_RegistroCliente.add(btn_RegistrarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 290, 40));
+        pnl_RegistroCliente.add(btn_RegistrarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 290, 40));
 
         Box_MarcaP.setBackground(new java.awt.Color(32, 33, 35));
         Box_MarcaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -158,7 +181,7 @@ public class VProductos extends javax.swing.JFrame {
                 Box_MarcaPActionPerformed(evt);
             }
         });
-        pnl_RegistroCliente.add(Box_MarcaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 210, 30));
+        pnl_RegistroCliente.add(Box_MarcaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 210, 30));
 
         Box_CategoriaP.setBackground(new java.awt.Color(32, 33, 35));
         Box_CategoriaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -167,7 +190,27 @@ public class VProductos extends javax.swing.JFrame {
                 Box_CategoriaPActionPerformed(evt);
             }
         });
-        pnl_RegistroCliente.add(Box_CategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 210, 30));
+        pnl_RegistroCliente.add(Box_CategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 210, 30));
+
+        jLabel9.setForeground(new java.awt.Color(52, 52, 54));
+        jLabel9.setText("Stock");
+        pnl_RegistroCliente.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+
+        txt_Stock.setBackground(new java.awt.Color(32, 33, 35));
+        txt_Stock.setForeground(new java.awt.Color(255, 255, 255));
+        txt_Stock.setBorder(null);
+        txt_Stock.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_StockFocusGained(evt);
+            }
+        });
+        txt_Stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_StockActionPerformed(evt);
+            }
+        });
+        pnl_RegistroCliente.add(txt_Stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 180, 30));
+        pnl_RegistroCliente.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 180, 10));
 
         getContentPane().add(pnl_RegistroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 390, 500));
 
@@ -338,24 +381,28 @@ public class VProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_PrecioVentaActionPerformed
 
     private void btn_RegistrarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarPActionPerformed
-
-        /*long dni = Integer.parseInt(txt_DNIC.getText());
-        String nombre = txt_NombreC.getText();
-        String apellidos = txt_ApellidosC.getText();
-        long telefono = Integer.parseInt(txt_TelefonoC.getText());
-        String email = txt_Email.getText();
-
-        cl.setDni(dni);
-        cl.setNombre(nombre);
-        cl.setApellidos(apellidos);
-        cl.setTelefono(telefono);
-        cl.setEmail(email);
-
+        Oper_Generales opgn = new Oper_Generales();
+        Categorias ctg = new Categorias();
+        Marcas mcs = new Marcas();
+        
+        String nombre = txt_NombreP.getText();
+        double precio1 = Double.parseDouble(txt_PrecioCompra.getText());
+        double precio2 = Double.parseDouble(txt_PrecioVenta.getText());
+        Integer stock = Integer.parseInt(txt_Stock.getText());
+        String marca_name = (String)Box_MarcaP.getSelectedItem();
+        String categ_name = (String)Box_CategoriaP.getSelectedItem();
+        
         try {
-            operC.insertar(cl);
+            ctg = opc.buscarCategoriasP(categ_name);
+            mcs = opm.buscarMarca(marca_name);
+            
+            Productos pdts = new Productos(ctg,mcs,nombre,precio1,precio2,stock);
+            opgn.Insertar(pdts);
+            
+            JOptionPane.showMessageDialog(null, "Insertado Correctameente");
         } catch (Exception ex) {
-            Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+            Logger.getLogger(VProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_RegistrarPActionPerformed
 
     private void btn_MinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MinimizarActionPerformed
@@ -373,18 +420,10 @@ public class VProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_HomeActionPerformed
 
     private void btn_ActualizarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarPActionPerformed
-        try {
-            listpd = pdimp.ListarProductos(rol);
-        } catch (Exception ex) {
-            Logger.getLogger(VProductos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            pdimp.CargaListProductos(listpd);
-            /*clts = operC.listarClientes();
-            operC.cargaListClientes(clts);*/
-        } catch (Exception ex) {
-            Logger.getLogger(VProductos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        prodts = opd.listarProductos(); //Carga Lista de productos
+        opd.cargaListProductos(prodts);
+        
+        opd.cargaBoxBuscarP(); // Carga Bosx Buscar Productos
     }//GEN-LAST:event_btn_ActualizarPActionPerformed
 
     private void Box_BuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box_BuscarPActionPerformed
@@ -415,15 +454,15 @@ public class VProductos extends javax.swing.JFrame {
 
     private void btn_ElimPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ElimPActionPerformed
 
-        /*long dni = (long) TablaCliente.getValueAt(TablaCliente.getSelectedRow(),0);
+        Integer dni = (Integer) TablaProducto.getValueAt(TablaProducto.getSelectedRow(),0);
 
-        //System.out.println(dni);
+        Productos pdto = new Productos();
         try {
-            cl = operC.buscarCliente(dni);
-            operC.eliminar(cl);
+            pdto = opd.buscarProducto(dni);
+            opd.eliminar(pdto);
         } catch (Exception ex) {
-            Logger.getLogger(VCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+            Logger.getLogger(VProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_ElimPActionPerformed
 
     private void Box_MarcaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box_MarcaPActionPerformed
@@ -433,6 +472,14 @@ public class VProductos extends javax.swing.JFrame {
     private void Box_CategoriaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box_CategoriaPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Box_CategoriaPActionPerformed
+
+    private void txt_StockFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_StockFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_StockFocusGained
+
+    private void txt_StockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_StockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_StockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,6 +539,7 @@ public class VProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -500,6 +548,7 @@ public class VProductos extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel jbtn_BuscarP;
     private javax.swing.JPanel pnl_MostrarCliente;
     private javax.swing.JPanel pnl_RegistroCliente;
@@ -507,5 +556,6 @@ public class VProductos extends javax.swing.JFrame {
     private javax.swing.JTextField txt_NombreP;
     private javax.swing.JTextField txt_PrecioCompra;
     private javax.swing.JTextField txt_PrecioVenta;
+    private javax.swing.JTextField txt_Stock;
     // End of variables declaration//GEN-END:variables
 }

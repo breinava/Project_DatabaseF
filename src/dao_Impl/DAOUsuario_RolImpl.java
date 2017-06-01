@@ -24,7 +24,7 @@ public class DAOUsuario_RolImpl extends MySQL implements DAOUsuario_Rol{
         
         try{
             this.MySQLCnx(r);
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS WHERE USUARIO = ?;");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM usuarios WHERE USUARIO = ?;");
             st.setString(1, u.getUsuario());
             
             ResultSet rs = st.executeQuery();
@@ -40,7 +40,7 @@ public class DAOUsuario_RolImpl extends MySQL implements DAOUsuario_Rol{
         
         try{
             this.MySQLCnx(r);
-            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO USUARIOS_ROLES VALUES(idUSUARIOS_ROLES,?,?);");
+            PreparedStatement st = this.Conexion.prepareStatement("INSERT INTO usuarios_roles VALUES(idUSUARIOS_ROLES,?,?);");
             st.setInt(1, r.getIdRol());
             st.setInt(2, UsuarioID);
             st.executeUpdate();

@@ -1,5 +1,5 @@
 package modelo_hbm;
-// Generated 18-may-2017 15:31:17 by Hibernate Tools 4.3.1
+// Generated 01-jun-2017 11:44:50 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,7 @@ public class Roles  implements java.io.Serializable {
 
      private Integer idRoles;
      private String nombre;
-     private String descripcion;
+     private String clave;
      private Set permisoses = new HashSet(0);
      private Set usuariosRoleses = new HashSet(0);
 
@@ -21,13 +21,13 @@ public class Roles  implements java.io.Serializable {
     }
 
 	
-    public Roles(String nombre, String descripcion) {
+    public Roles(String nombre, String clave) {
         this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.clave = clave;
     }
-    public Roles(String nombre, String descripcion, Set permisoses, Set usuariosRoleses) {
+    public Roles(String nombre, String clave, Set permisoses, Set usuariosRoleses) {
        this.nombre = nombre;
-       this.descripcion = descripcion;
+       this.clave = clave;
        this.permisoses = permisoses;
        this.usuariosRoleses = usuariosRoleses;
     }
@@ -46,12 +46,12 @@ public class Roles  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getDescripcion() {
-        return this.descripcion;
+    public String getClave() {
+        return this.clave;
     }
     
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
     public Set getPermisoses() {
         return this.permisoses;

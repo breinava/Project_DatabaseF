@@ -1,5 +1,5 @@
 package modelo_hbm;
-// Generated 18-may-2017 15:31:17 by Hibernate Tools 4.3.1
+// Generated 01-jun-2017 11:44:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,9 +23,8 @@ public class Pedidos  implements java.io.Serializable {
     }
 
 	
-    public Pedidos(Almacen almacen, ModoPago modoPago, Proveedores proveedores, Date fecha) {
+    public Pedidos(Almacen almacen, Proveedores proveedores, Date fecha) {
         this.almacen = almacen;
-        this.modoPago = modoPago;
         this.proveedores = proveedores;
         this.fecha = fecha;
     }

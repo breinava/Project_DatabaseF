@@ -21,7 +21,7 @@ public class Login extends MySQL{
 
         try {
             this.MySQLCnx(r);
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM VIEW_USER_ROL WHERE USUARIO =? AND EMAIL =? AND CLAVE_USER =? AND NOMBRE =? AND CLAVE_ROL =?;");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM view_user_rol WHERE USUARIO =? AND EMAIL =? AND CLAVE_USER =? AND NOMBRE =? AND CLAVE_ROL =?;");
             st.setString(1, u.getUsuario());
             st.setString(2, u.getEmail());
             st.setString(3, u.getPass());

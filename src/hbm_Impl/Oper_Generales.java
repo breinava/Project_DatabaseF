@@ -11,9 +11,9 @@ import org.hibernate.Transaction;
  * @author breiner
  */
 
-public class OperacionesGeneral {
-
-    public void insertar(Object obj) throws Exception {
+public class Oper_Generales {
+    
+    public void Insertar(Object obj) throws Exception{
         
         SessionFactory sesion = null;
         Session sess = null;
@@ -29,14 +29,13 @@ public class OperacionesGeneral {
             JOptionPane.showMessageDialog(null, "Insertado Correctameente");
         
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error Insercion..","Iserción Fallida", NORMAL);
             System.err.println(ex);
+            JOptionPane.showMessageDialog(null, "Error Insercion..","Iserción Fallida", NORMAL);
         }finally{
             if(sess != null){
                 sess.close();
             }
         }
-                
     }
     
     public void eliminar(Object obj) throws Exception {
@@ -64,13 +63,12 @@ public class OperacionesGeneral {
             if (tx != null) {
                 tx.rollback();
             }
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar","Eliminacion Fallida",NORMAL);
             System.err.println(ex);
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar","Eliminacion Fallida",NORMAL);
         }finally{
             if(sess != null){
                 sess.close();
             }
         }        
     }
-   
 }

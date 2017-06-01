@@ -42,7 +42,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
         Rol rl = new Rol("admin","Soy Admin NV.2");
         try {
             this.MySQLCnx(rl);
-            PreparedStatement st = this.Conexion.prepareStatement("UPDATE USUARIOS SET USUARIO =?, EMAIL =?, PASS=? WHERE idUSERS=?;");
+            PreparedStatement st = this.Conexion.prepareStatement("UPDATE usuarios SET USUARIO =?, EMAIL =?, PASS=? WHERE idUSERS=?;");
             st.setString(1,u.getUsuario() );
             st.setString(2, u.getEmail());
             st.setString(3, u.getPass());
@@ -59,7 +59,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
     public void EliminarUsuario(Usuario u, Rol asc) throws Exception {
         try {
             this.MySQLCnx(asc);
-            PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM USUARIOS WHERE idUSERS=?;");
+            PreparedStatement st = this.Conexion.prepareStatement("DELETE FROM usuarios WHERE idUSERS=?;");
             st.setInt(1, u.getIdUsu());
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -76,7 +76,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
         
         try {
             this.MySQLCnx(asc);
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM usuarios");
             
             usuarios = new ArrayList();
             ResultSet rs=st.executeQuery();
@@ -130,7 +130,7 @@ public class DAOUsuarioImpl extends MySQL implements DAOUsuario {
         
         try {
             this.MySQLCnx(asc);
-            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM USUARIOS WHERE USUARIO = ?;");
+            PreparedStatement st = this.Conexion.prepareStatement("SELECT * FROM usuarios WHERE USUARIO = ?;");
             st.setString(1, usr);
             ResultSet rs=st.executeQuery();
             
